@@ -1,5 +1,8 @@
-# fard
-A progressive framework for building mini programme with Fre.
+<p align="center"><img src="https://ae01.alicdn.com/kf/HTB1VM4ecWSs3KVjSZPiq6AsiVXaE.jpg" alt="fard logo" width="200px"></p>
+
+# fard [![NPM version](https://img.shields.io/npm/v/fard.svg?style=flat-square)](https://npmjs.com/package/fard) [![NPM downloads](https://img.shields.io/npm/dt/fard.svg?style=flat-square)](https://npmjs.com/package/fard)
+
+:snowman: New way to build mini programs with Fre runtime.
 
 ### Use
 ```js
