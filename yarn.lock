@@ -200,11 +200,6 @@ esutils@^2.0.0, esutils@^2.0.2:
   resolved "https://registry.npmjs.org/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
 
-fre@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.npmjs.org/fre/-/fre-1.4.2.tgz#6462d61e2fce6ed411877095beef05265aa00986"
-  integrity sha512-ZVjCt7+SycevNj6cf6ciPv9NPF6bs+0XXj1zWidFTbVtqw4G1/naNgAiB+jTPkIn7Wew9MTBEqQvHSZt2ZBazg==
-
 globals@^11.1.0:
   version "11.12.0"
   resolved "https://registry.npmjs.org/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"

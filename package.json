@@ -1,7 +1,4 @@
 {
-  "dependencies": {
-    "fre": "^1.4.2"
-  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-react-jsx": "^7.3.0"

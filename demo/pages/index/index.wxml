@@ -4,6 +4,7 @@
 
 <template name="@2">
 	<view>
+    <view>132yse</view>
 		<template is="{{child1.name}}" data="{{...child1}}"/>
 	</view>
 </template>
