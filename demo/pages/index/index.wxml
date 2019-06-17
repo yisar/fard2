@@ -1,0 +1,12 @@
+<template name="@1">
+	<text>hello world</text>
+</template>
+
+<template name="@2">
+	<view>
+		<template is="{{child1.name}}" data="{{...child1}}"/>
+	</view>
+</template>
+
+<!--占位template-->
+<template is="{{root.name}}" data="{{...root}}"/>
