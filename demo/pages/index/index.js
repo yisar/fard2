@@ -1,5 +1,10 @@
-import { scheduleWork, options } from 'fre'
+import { scheduleWork, options, h } from 'fre'
 function render (vnode) {
+  Page({
+    data: {
+      root: []
+    }
+  })
   const rootFiber = {
     tag: 'root',
     props: { children: vnode }
@@ -11,10 +16,8 @@ options.commitWork = fiber => {
   console.log(fiber.children)
 }
 
-function App(){
-  return (
-    <text>hello world!</text>
-  )
+function App () {
+  return <text>hello world!</text>
 }
 
 render(<App />)
