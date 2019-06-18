@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "fre": "^1.4.2"
+    "fre": "^1.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

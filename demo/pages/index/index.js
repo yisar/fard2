@@ -1,8 +1,8 @@
-// import {
-//   scheduleWork,
-//   options,
-//   h
-// } from 'fre'
+import {
+  scheduleWork,
+  options,
+  h
+} from 'fre'
 
 let vdom = {
   type: 'view',
@@ -27,6 +27,16 @@ let vdom = {
 }
 
 function render(vdom) {
+  options.platform = 'miniapp'
+  scheduleWork({
+    tag: 2,
+    props: {
+      children: vdom
+    }
+  })
+  options.commitWork = fiber => {
+    console.log(fiber)
+  }
   Page({
     data: {
       vdom
