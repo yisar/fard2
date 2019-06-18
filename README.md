@@ -7,7 +7,7 @@
 ### Use
 ```js
 import { useState } from 'fre'
-import { h, render } from 'fre/wx'
+import { h, render } from 'fard'
 
 function Counter() {
   const [count, setCount] = useState(0)
