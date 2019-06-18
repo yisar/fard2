@@ -1,14 +1,13 @@
 <template name="@2">
-  <text>hello </text>
+  <text>hello</text>
 </template>
 
 <template name="@3">
-  <text> world</text>
+  <text>world</text>
 </template>
 
 <template name="@1">
   <view>
-    <view>{{msg}}</view>
     <block wx:for="{{children}}" wx:key="key">
       <template is="{{item.name}}" data="{{...item}}"></template>
     </block>
