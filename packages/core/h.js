@@ -14,10 +14,14 @@ function h (type, props) {
     } else if (typeof vnode === 'function') {
       children = vnode
     } else {
-      children.push(vnode)
+      children.push(
+        typeof vnode === 'object'
+          ? vnode
+          : { type: 'text', props: { nodeValue: vnode } }
+      )
     }
   }
-  
+
   uuid++
   return {
     name: '@' + uuid,
