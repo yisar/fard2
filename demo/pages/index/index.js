@@ -2,15 +2,14 @@ Page({
   data: {
     root: {
       name: '@1',
-      type: 'text',
-      msg: 'hello world',
+      type: 'View',
       children: [
         {
-          type: 'text',
+          type: 'Text',
           name: '@2'
         },
         {
-          type: 'text',
+          type: 'Text',
           name: '@3'
         }
       ]

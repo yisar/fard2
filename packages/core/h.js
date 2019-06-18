@@ -4,7 +4,6 @@ function h (type, props) {
   let children = []
   let length = arguments.length
 
-  uuid++
   while (length-- > 2) rest.push(arguments[length])
   while (rest.length) {
     let vnode = rest.pop()
@@ -18,6 +17,8 @@ function h (type, props) {
       children.push(vnode)
     }
   }
+  
+  uuid++
   return {
     name: '@' + uuid,
     type,
