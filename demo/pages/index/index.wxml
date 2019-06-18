@@ -1,10 +1,4 @@
-<template name="@2">
-  <text>hello</text>
-</template>
-
-<template name="@3">
-  <text>world</text>
-</template>
+<template is="{{root.name}}" data="{{...root}}" />
 
 <template name="@1">
   <view>
@@ -14,4 +8,11 @@
   </view>
 </template>
 
-<template is="{{root.name}}" data="{{...root}}" />
+<template name="@2">
+  <text>hello</text>
+</template>
+
+<template name="@3">
+  <text>world</text>
+</template>
+
