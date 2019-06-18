@@ -1,18 +1,17 @@
-<template is="{{root.name}}" data="{{...root}}" />
+<template is="{{vdom.path}}" data="{{...vdom}}" />
 
-<template name="@1">
-  <view>
+<template name="/0">
+  <view class="{{props.class}}">
     <block wx:for="{{children}}" wx:key="key">
-      <template is="{{item.name}}" data="{{...item}}"></template>
+      <template is="{{item.path}}" data="{{...item}}"></template>
     </block>
   </view>
 </template>
 
-<template name="@2">
-  <text>{{props.nodeValue}}</text>
+<template name="/0/0">
+  <image class="{{props.class}}" src="{{props.src}}"></image>
 </template>
 
-<template name="@3">
-  <text>{{props.nodeValue}}</text>
+<template name="/0/1">
+  <text class="{{props.class}}">{{props.nodeValue}}</text>
 </template>
-

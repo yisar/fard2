@@ -1,47 +1,37 @@
-Page({
-  data: {
-    root: {
-      name: '@1',
-      type: 'View',
-      children: [{
-          type: 'Text',
-          name: '@2',
-          props: {
-            nodeValue: 'hello'
-          }
-        },
-        {
-          type: 'Text',
-          name: '@3',
-          props: {
-            nodeValue: 'world'
-          }
-        }
-      ]
+// import {
+//   scheduleWork,
+//   options,
+//   h
+// } from 'fre'
+
+let vdom = {
+  type: 'view',
+  path: '/0',
+  children: [{
+      type: 'Text',
+      path: '/0/0',
+      props: {
+        class: 'logo',
+        src: 'https://ws1.sinaimg.cn/large/0065Zy9ely1g45a2fme8dj30rs0kq772.jpg'
+      }
+    },
+    {
+      type: 'image',
+      path: '/0/1',
+      props: {
+        class: 'title',
+        nodeValue: 'fard'
+      }
     }
-  }
-})
+  ]
+}
 
-// import { scheduleWork, options, h } from 'fre'
-// function render (vnode) {
-//   Page({
-//     data: {
-//       root: []
-//     }
-//   })
-//   const rootFiber = {
-//     tag: 'root',
-//     props: { children: vnode }
-//   }
-//   scheduleWork(rootFiber) // 进入渲染流程
-// }
+function render(vdom) {
+  Page({
+    data: {
+      vdom
+    }
+  })
+}
 
-// options.commitWork = fiber => {
-//   console.log(fiber.children)
-// }
-
-// function App () {
-//   return <text>hello world!</text>
-// }
-
-// render(<App />)
+render(vdom)
