@@ -1,3 +1,23 @@
+Page({
+  data: {
+    root: {
+      name: '@1',
+      type: 'text',
+      msg: 'hello world',
+      children: [
+        {
+          type: 'text',
+          name: '@2'
+        },
+        {
+          type: 'text',
+          name: '@3'
+        }
+      ]
+    }
+  }
+})
+
 // import { scheduleWork, options, h } from 'fre'
 // function render (vnode) {
 //   Page({
@@ -21,14 +41,3 @@
 // }
 
 // render(<App />)
-
-Page({
-  data: {
-    root: {
-      name: "@2",
-      child1: {
-        name: '@1',
-      }
-    }
-  }
-})

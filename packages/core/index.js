@@ -1,7 +1,3 @@
-export function render(vnode){
-  //page
-}
-
-export function h(){
-  
+export function render (vnode) {
+  // page
 }

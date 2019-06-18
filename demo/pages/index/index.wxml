@@ -1,12 +1,18 @@
-<template name="@1">
-	<Text>hello world</Text>
-</template>
-
 <template name="@2">
-	<view>
-    <View>132yse</View>
-		<template is="{{child1.name}}" data="{{...child1}}"/>
-	</view>
+  <text>hello </text>
 </template>
 
-<template is="{{root.name}}" data="{{...root}}"/>
+<template name="@3">
+  <text> world</text>
+</template>
+
+<template name="@1">
+  <view>
+    <view>{{msg}}</view>
+    <block wx:for="{{children}}" wx:key="key">
+      <template is="{{item.name}}" data="{{...item}}"></template>
+    </block>
+  </view>
+</template>
+
+<template is="{{root.name}}" data="{{...root}}" />
