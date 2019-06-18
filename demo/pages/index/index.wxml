@@ -9,10 +9,10 @@
 </template>
 
 <template name="@2">
-  <text>hello</text>
+  <text>{{props.nodeValue}}</text>
 </template>
 
 <template name="@3">
-  <text>world</text>
+  <text>{{props.nodeValue}}</text>
 </template>
 

@@ -3,14 +3,19 @@ Page({
     root: {
       name: '@1',
       type: 'View',
-      children: [
-        {
+      children: [{
           type: 'Text',
-          name: '@2'
+          name: '@2',
+          props: {
+            nodeValue: 'hello'
+          }
         },
         {
           type: 'Text',
-          name: '@3'
+          name: '@3',
+          props: {
+            nodeValue: 'world'
+          }
         }
       ]
     }

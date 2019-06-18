@@ -1,0 +1,17 @@
+<template is="{{root.path}}" data="{{...root}}" />
+
+<template name="/0">
+  <view>
+    <block wx:for="{{children}}" wx:key="key">
+      <template is="{{item.path}}" data="{{...item}}"></template>
+    </block>
+  </view>
+</template>
+
+<template name="/0/0">
+  <text>{{props.nodeValue}}</text>
+</template>
+
+<template name="/0/1">
+  <image src="{{props.src}}"></image>
+</template>
