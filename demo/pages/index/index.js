@@ -8,7 +8,7 @@ let vdom = {
   type: 'view',
   path: '/0',
   children: [{
-      type: 'Text',
+      type: 'image',
       path: '/0/0',
       props: {
         class: 'logo',
@@ -16,7 +16,7 @@ let vdom = {
       }
     },
     {
-      type: 'image',
+      type: 'text',
       path: '/0/1',
       props: {
         class: 'title',
