@@ -1,5 +1,5 @@
 import { useState } from 'fre'
-import { h, render } from '../../fard'
+import { h, render } from './fard'
 
 function Counter () {
   const [count, setCount] = useState(0)
