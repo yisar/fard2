@@ -1,8 +1,7 @@
-export function render(vdom){
-  console.log(vdom)
-}
+import { options, scheduleWork } from 'fre'
 
 let uuid = 0
+let once = true
 export function h (type, props) {
   let rest = []
   let children = []
@@ -31,5 +30,41 @@ export function h (type, props) {
     name: '@' + uuid,
     type,
     props: { ...props, children }
+  }
+}
+
+export function render (vdom) {
+  options.platform = 'miniapp'
+
+  scheduleWork({
+    tag: 2,
+    props: {
+      children: vdom
+    }
+  })
+  let context
+  options.commitWork = fiber => {
+    let { type, props, name } = fiber.child.child
+    console.log(fiber)
+    let vdom = { type, props, name }
+    uuid = 1
+
+    if (once) {
+      Page({
+        data: {
+          vdom: {}
+        },
+        onLoad () {
+          context = this
+          this.setData({
+            vdom
+          })
+        },
+        $3_onClick: vdom.props.children[1].props.onClick
+      })
+      once = false
+    } else {
+      context.setData({ vdom })
+    }
   }
 }
