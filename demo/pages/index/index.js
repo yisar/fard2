@@ -5,15 +5,19 @@ function Counter () {
   const [count, setCount] = useState(0)
 
   return h('view', {}, [
-    h('text', {}, count),
+    h(
+      'text',
+      {
+        class: 'text'
+      },
+      count
+    ),
     h(
       'button',
       {
-        class: 'btn',
-        onClick: () => {
-          setCount(count + 1)
-        },
-        onclick: '$3_onClick'
+        class: 'button',
+        onClick: () => setCount(count + 1),
+        onclick: '$onClick'
       },
       '+'
     )

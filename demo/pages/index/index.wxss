@@ -1,13 +1,15 @@
-.title{
+.text {
   text-align: center;
   font-size: 20px;
   font-weight: bold;
   display: block;
 }
 
-.logo{
-  margin: 0 auto;
-  width: 200px;
-  height: 150px;
+.button {
+  margin: 20px auto;
   display: block;
+  width: 46px;
+  background: #03db6c;
+  color: #fff;
+  border: none
 }

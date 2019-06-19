@@ -5,7 +5,7 @@ let once = true
 
 export function render (vdom) {
   options.platform = 'miniapp'
-
+  
   scheduleWork({
     tag: 2,
     props: {
@@ -29,12 +29,12 @@ export function render (vdom) {
             vdom
           })
         },
-        $3_onClick: handler
+        $onClick: handler
       })
       once = false
     } else {
       context.setData({ vdom })
-      context.$3_onClick = handler
+      context.$onClick = handler
     }
   }
 }
