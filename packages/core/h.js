@@ -1,5 +1,5 @@
 let uuid = 0
-function h (type, props) {
+export function h (type, props) {
   let rest = []
   let children = []
   let length = arguments.length

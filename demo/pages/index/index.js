@@ -1,29 +1,25 @@
 import {
   scheduleWork,
   options,
-  h
+  useState
 } from 'fre'
+import {
+  h
+} from '../../fard'
 
-let vdom = {
-  type: 'view',
-  path: '/0',
-  children: [{
-      type: 'image',
-      path: '/0/0',
-      props: {
-        class: 'logo',
-        src: 'https://ws1.sinaimg.cn/large/0065Zy9ely1g45a2fme8dj30rs0kq772.jpg'
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  return h('view', {}, [
+    h('text', {}, count),
+    h('button', {
+      class: 'btn',
+      onclick: function click() {
+        console.log(111)
+        setCount(count + 1)
       }
-    },
-    {
-      type: 'text',
-      path: '/0/1',
-      props: {
-        class: 'title',
-        nodeValue: 'fard'
-      }
-    }
-  ]
+    }, '+')
+  ])
 }
 
 function render(vdom) {
@@ -35,13 +31,29 @@ function render(vdom) {
     }
   })
   options.commitWork = fiber => {
-    console.log(fiber)
-  }
-  Page({
-    data: {
-      vdom
+    let {
+      type,
+      props,
+      name
+    } = fiber.child.child
+    let vdom = {
+      type,
+      props,
+      name
     }
-  })
+
+    Page({
+      data: {
+        vdom: {}
+      },
+      onLoad() {
+        this.setData({
+          vdom
+        })
+        console.log(vdom)
+      }
+    })
+  }
 }
 
-render(vdom)
+render(h(Counter, {}, []))
