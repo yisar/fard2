@@ -27,4 +27,4 @@ render(<Counter />)
 工作日每天搞一点点，节假日会大更新~
 
 ### shortscreen
-![](https://ae01.alicdn.com/kf/HTB1hwrVdfWG3KVjSZFP5jXaiXXaZ.gif)
+<img src="https://ae01.alicdn.com/kf/HTB1hwrVdfWG3KVjSZFP5jXaiXXaZ.gif" width="300px"/>
