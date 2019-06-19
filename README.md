@@ -25,3 +25,6 @@ render(<Counter />)
 由于小程序不支持 babel，所以以上代码仍然需要 webpack 打包
 
 工作日每天搞一点点，节假日会大更新~
+
+### shortscreen
+![](https://ae01.alicdn.com/kf/HTB1hwrVdfWG3KVjSZFP5jXaiXXaZ.gif)
