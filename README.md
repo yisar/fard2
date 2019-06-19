@@ -2,9 +2,10 @@
 
 # fard [![NPM version](https://img.shields.io/npm/v/fard.svg?style=flat-square)](https://npmjs.com/package/fard) [![NPM downloads](https://img.shields.io/npm/dt/fard.svg?style=flat-square)](https://npmjs.com/package/fard)
 
-:snowman: New way to build mini programs with Fre runtime.
+:snowman: fre 转小程序的新思路♂ learn once, write anywhere.
 
 ### Use
+
 ```js
 import { useState } from 'fre'
 import { h, render } from 'fard'
@@ -13,7 +14,7 @@ function Counter() {
   const [count, setCount] = useState(0)
   return (
     <view>
-      {count}
+      <text>{count}</text>
       <button onClick={() => setCount(count + 1)}>+</button>
     </view>
   )
