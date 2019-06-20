@@ -4,6 +4,8 @@
 
 :snowman: fre 转小程序的新思路 ♂ learn once, write anywhere.
 
+> 工作日每天搞一点点，节假日会大更新~
+
 ### Use
 
 ```js
@@ -22,9 +24,24 @@ function Counter() {
 
 render(<Counter />)
 ```
-由于小程序不支持 babel，所以以上代码仍然需要 webpack 打包
 
-工作日每天搞一点点，节假日会大更新~
+### fard-webpack-plugin
+
+fard 原理上是无需编译的，但是小程序不支持 babel 不支持 stylus ，最终还是需要 webpack 打包
+
+`fard-webpack-plugin` 是 fard 唯一一个额外的插件，用来包办 webpack 相关
+
+```js
+const FardWebpackPlugin = require('./plugin')
+
+plugins: [
+  new FardWebpackPlugin({
+    filename: 'base.wxml', //需要事先打包的 template，后缀可以是 wxml、axml
+    nestedlevel: 5, // jsx 嵌套层级数，不要嵌套太多层，默认 5
+  }),
+]
+```
 
 ### shortscreen
+
 <img src="https://ae01.alicdn.com/kf/HTB1hwrVdfWG3KVjSZFP5jXaiXXaZ.gif" width="300px"/>
