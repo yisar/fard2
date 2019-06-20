@@ -32,7 +32,7 @@ fard 原理上是无需编译的，但是小程序不支持 babel 不支持 styl
 `fard-webpack-plugin` 是 fard 唯一一个额外的插件，用来包办 webpack 相关
 
 ```js
-const FardWebpackPlugin = require('./plugin')
+const FardWebpackPlugin = require('fard-webpack-plugin')
 
 plugins: [
   new FardWebpackPlugin({
