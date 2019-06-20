@@ -10,5 +10,10 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js'
   },
-  plugins: [new FardWebpackPlugin()]
+  plugins: [
+    new FardWebpackPlugin({
+      filename: 'base.axml',
+      nestedlevel: 5
+    })
+  ]
 }
