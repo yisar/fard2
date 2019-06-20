@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [
     new FardWebpackPlugin({
-      filename: 'base.axml',
+      filename: 'base.wxml',
       nestedlevel: 5
     })
   ]
