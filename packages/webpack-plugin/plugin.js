@@ -16,7 +16,7 @@ class FardWebpackPlugin {
       </block>
     </view>
   </block>
-  <block wx:if="{{item.type === 'text'}}">{{item.text}}</block>
+  <block wx:elif="{{item.type === 'text'}}">{{item.text}}</block>
   <block wx:elif="{{item.type === 'button'}}">
     <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.text}}</button>
   </block>
