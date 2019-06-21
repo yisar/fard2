@@ -11,5 +11,12 @@
   width: 46px;
   background: #03db6c;
   color: #fff;
-  border: none
+  border: none;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  display: block;
+  color: #888
 }

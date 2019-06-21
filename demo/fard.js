@@ -36,7 +36,9 @@ export function render (vdom) {
       Page(hostCofig)
       once = false
     } else {
-      context.setData({ vdom })
+      context.setData({
+        vdom
+      })
       for (let k in handlerMap) {
         context[k] = handlerMap[k]
       }
@@ -55,8 +57,11 @@ export function h (type, props) {
     if (vnode && vnode.pop) {
       for (length = vnode.length; length--;) rest.push(vnode[length])
     } else if (vnode === null || vnode === true || vnode === false) {
-      vnode = { type: () => {} }
+      vnode = {
+        type: () => {}
+      }
     } else if (typeof vnode === 'function') {
+      console.log(type, props, vnode)
       children = vnode
     } else {
       children.push(vnode)
@@ -77,25 +82,7 @@ export function h (type, props) {
   return {
     name: '@' + uuid,
     type,
+    child: typeof type === 'function' ? type(props) : null,
     props: { ...props, children }
   }
 }
-
-// h('view', {}, [
-//   h(
-//     'text',
-//     {
-//       class: 'text'
-//     },
-//     0
-//   ),
-//   h(
-//     'button',
-//     {
-//       class: 'button',
-//       onClick: () => setCount(count + 1),
-//       onclick: '$onClick'
-//     },
-//     '+'
-//   )
-// ])

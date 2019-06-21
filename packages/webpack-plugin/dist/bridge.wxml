@@ -8,13 +8,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -27,13 +30,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -46,13 +52,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -65,13 +74,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -84,13 +96,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -103,13 +118,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -122,13 +140,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -141,13 +162,16 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 
@@ -160,13 +184,236 @@
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@10">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@11">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@12">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@13">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@14">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@15">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@16">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@17">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@18">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
+  </block>
+</template>
+
+<template name="@19">
+  <block wx:if="{{type === 'view'}}">
+    <view class="{{props.class}}">
+      <block wx:for="{{props.children}}" wx:key="">
+        <template is="{{item.name}}" data="{{...item}}"></template>
+      </block>
+    </view>
+  </block>
+  <block wx:elif="{{type === 'button'}}">
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  </block>
+  <block wx:elif="{{type === 'text'}}">
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
+  </block>
+  <block wx:elif="{{type === 'image'}}">
+    <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>
 

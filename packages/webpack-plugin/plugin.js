@@ -16,13 +16,16 @@ class FardWebpackPlugin {
     </view>
   </block>
   <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
+    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
     <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
+  </block>
+  <block wx:elif="{{child}}">
+    <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
 </template>` + '\n\r'
     }
