@@ -35,15 +35,15 @@ render(<Counter />)
 fard 使用 fre 的组件化机制，通过 props 进行通信
 
 ```js
-const Child = props => <text>{props.msg}</text>
-const Parent = () => <Child msg="Hello Fard!" />
+const Child = props => <text>{props.value}</text>
+const Parent = () => <Child value="Hello Fard!" />
 ```
 
 同时支持 render props
 
 ```js
-const HelloBox = () => <Box render={value => <h1>{value}</h1>} />
-const Box = props => <div>{props.render('Hello Fard!')}</div>
+const HelloBox = () => <Box render={value => <text>{value}</text>} />
+const Box = props => <view>{props.render('Hello Fard!')}</view>
 ```
 
 ### fard-webpack-plugin
