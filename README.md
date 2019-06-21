@@ -37,7 +37,7 @@ const FardWebpackPlugin = require('fard-webpack-plugin')
 plugins: [
   new FardWebpackPlugin({
     filename: 'base.wxml', //需要事先打包的 template，后缀可以是 wxml、axml
-    nodes: 5, // 每个组件的节点数
+    nodes: 5, // 每个组件的最大节点数
   }),
 ]
 ```
