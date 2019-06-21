@@ -16,8 +16,7 @@ function Counter () {
       'button',
       {
         class: 'button',
-        onClick: () => setCount(count + 1),
-        onclick: '$onClick'
+        onClick: () => setCount(count + 1)
       },
       '+'
     )

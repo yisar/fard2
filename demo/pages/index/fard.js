@@ -24,6 +24,7 @@ export function render (vdom) {
           vdom: {}
         },
         onLoad () {
+          console.log(vdom)
           context = this
           this.setData({
             vdom
@@ -63,13 +64,39 @@ export function h (type, props) {
     }
   }
 
-  if (type === 'text' || type === 'button') props.nodeValue = children[0]
-  if (props.onClick) handlerMap[$ + uuid + 'onClick'] = props.onClick
-
+  if (type === 'text' || type === 'button') {
+    props.nodeValue = children[0]
+    children = []
+  }
   uuid++
+  if ((props || {}).onClick) {
+    let key = '$' + uuid + 'onClick'
+    handlerMap[key] = props.onClick || ''
+    props.onclick = key
+  }
+
   return {
     name: '@' + uuid,
     type,
     props: { ...props, children }
   }
 }
+
+// h('view', {}, [
+//   h(
+//     'text',
+//     {
+//       class: 'text'
+//     },
+//     0
+//   ),
+//   h(
+//     'button',
+//     {
+//       class: 'button',
+//       onClick: () => setCount(count + 1),
+//       onclick: '$onClick'
+//     },
+//     '+'
+//   )
+// ])
