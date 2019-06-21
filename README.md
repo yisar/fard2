@@ -7,10 +7,12 @@
 > 工作日每天搞一点点，节假日会大更新~
 
 ### Use
+
 ```xml
 <import src="../../bridge.wxml"/> <!--brideg.wxml 由 webpack 自动生成-->
 <template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}"/>
 ```
+
 ```js
 import { useState } from 'fre'
 import { h, render } from 'fard'
@@ -27,6 +29,18 @@ function Counter() {
 
 render(<Counter />)
 ```
+
+### props
+
+fard 使用 fre 的组件化机制，通过 props 进行通信
+
+```js
+const Child = props => <text>{props.msg}</text>
+const App = () => <Child msg="hello fard" />
+
+render(<App />)
+```
+
 ### fard-webpack-plugin
 
 fard 原理上是无需编译的，但是小程序不支持 babel 不支持 stylus ，最终还是需要 webpack 打包
@@ -41,7 +55,7 @@ const FardWebpackPlugin = require('fard-webpack-plugin')
 plugins: [
   new FardWebpackPlugin({
     filename: 'bridge.wxml', //事先生成的 bridge template
-    nodes: 10, // 每个组件的最大节点数
+    nodes: 20, // 每个组件的最大节点数，数量越少，性能越好
   }),
 ]
 ```

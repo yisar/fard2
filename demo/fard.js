@@ -61,7 +61,6 @@ export function h (type, props) {
         type: () => {}
       }
     } else if (typeof vnode === 'function') {
-      console.log(type, props, vnode)
       children = vnode
     } else {
       children.push(vnode)

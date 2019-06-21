@@ -1,5 +1,5 @@
 class FardWebpackPlugin {
-  constructor ({ filename = 'base.wxml', nodes = 6 }) {
+  constructor ({ filename = 'base.wxml', nodes = 20 }) {
     this.filename = filename
     this.nodes = nodes
   }

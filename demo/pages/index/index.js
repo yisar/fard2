@@ -1,40 +1,41 @@
-import {
-  useState
-} from 'fre'
-import {
-  h,
-  render
-} from '../../fard'
+import { useState } from 'fre'
+import { h, render } from '../../fard'
 
-function App() {
+function App () {
   return h(
-    'view', {
+    'view',
+    {
       class: 'app'
-    }, [
-      h(Counter, null),
-      h('text', {
-        class: 'footer'
-      }, '© fard.js 2019')
-    ]
+    },
+    h(Counter, { msg: 'hello fard' })
   )
 }
 
-function Counter() {
+function Counter ({ msg }) {
   const [count, setCount] = useState(0)
 
   return h('view', {}, [
     h(
-      'text', {
+      'text',
+      {
         class: 'text'
       },
       count
     ),
     h(
-      'button', {
+      'button',
+      {
         class: 'button',
         onClick: () => setCount(count + 1)
       },
       '+'
+    ),
+    h(
+      'text',
+      {
+        class: 'footer'
+      },
+      msg
     )
   ])
 }
