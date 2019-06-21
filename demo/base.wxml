@@ -1,5 +1,3 @@
-<template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}" />
-
 <template name="@1">
   <block wx:if="{{type === 'view'}}">
     <view class="{{props.class}}">
@@ -170,4 +168,4 @@
     <image class="{{props.class}}" src="{{props.src}}"></image>
   </block>
 </template>
-
+

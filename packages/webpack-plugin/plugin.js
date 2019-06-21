@@ -4,7 +4,6 @@ class FardWebpackPlugin {
     this.nodes = nodes
   }
   createSource () {
-    let rootStr = `<template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}" />`
     let blockStr = ''
     for (let i = 1; i < this.nodes; i++) {
       blockStr += `
@@ -28,7 +27,7 @@ class FardWebpackPlugin {
 </template>` + '\n\r'
     }
 
-    return rootStr + '\n\r' + blockStr
+    return blockStr
   }
 
   apply (compiler) {
