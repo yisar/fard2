@@ -19,7 +19,7 @@ class FardWebpackPlugin {
     <button class="{{props.class}}" bind:touchstart="{{props.onclick}}">{{props.nodeValue}}</button>
   </block>
   <block wx:elif="{{type === 'text'}}">
-    <button class="{{props.class}}">{{props.nodeValue}}</button>
+    <text class="{{props.class}}">{{props.nodeValue}}</text>
   </block>
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>

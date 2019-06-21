@@ -24,7 +24,6 @@ export function render (vdom) {
           vdom: {}
         },
         onLoad () {
-          console.log(vdom)
           context = this
           this.setData({
             vdom
