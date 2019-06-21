@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [
     new FardWebpackPlugin({
-      filename: 'base.wxml',
+      filename: 'bridge.wxml',
       nodes: 10
     })
   ]
