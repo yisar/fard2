@@ -2,7 +2,7 @@
 
 # fard [![NPM version](https://img.shields.io/npm/v/fard.svg?style=flat-square)](https://npmjs.com/package/fard) [![NPM downloads](https://img.shields.io/npm/dt/fard.svg?style=flat-square)](https://npmjs.com/package/fard)
 
-:snowman: fre 转小程序的新思路 ♂ learn once, write anywhere.
+:snowman: [fre](https://github.com/132yse/fre) 转小程序的新思路 ♂ learn once, write anywhere.
 
 > 工作日每天搞一点点，节假日会大更新~
 
@@ -36,9 +36,19 @@ fard 使用 fre 的组件化机制，通过 props 进行通信
 
 ```js
 const Child = props => <text>{props.msg}</text>
-const App = () => <Child msg="hello fard" />
+const Parent = () => <Child msg="hello fard" />
+```
 
-render(<App />)
+同时支持 render props
+
+```js
+const HelloBox = () => (
+  <Box>
+    <h1>Hello world !</h1>
+  </Box>
+)
+
+const Box = props => <div>{props.children}</div>
 ```
 
 ### fard-webpack-plugin
