@@ -31,7 +31,7 @@ render(<Counter />)
 
 fard 原理上是无需编译的，但是小程序不支持 babel 不支持 stylus ，最终还是需要 webpack 打包
 
-借助 webpack，还可以顺便做一些编译的工作，如 `生成 template bridge`、`复制小程序的配置文件`
+借助 webpack，还可以顺便做一些构建的工作，如 `生成 template bridge`、`复制小程序的配置文件`
 
 `fard-webpack-plugin` 是 fard 唯一一个额外的插件，用来包办 webpack 相关
 
