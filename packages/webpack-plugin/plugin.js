@@ -1,12 +1,12 @@
 class FardWebpackPlugin {
-  constructor ({ filename = 'base.wxml', nestedlevel = 5 }) {
+  constructor ({ filename = 'base.wxml', nodes = 5 }) {
     this.filename = filename
-    this.nestedlevel = nestedlevel
+    this.nodes = nodes
   }
   createSource () {
     let rootStr = `<template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}" />`
     let blockStr = ''
-    for (let i = 0; i < this.nestedlevel; i++) {
+    for (let i = 1; i < this.nodes; i++) {
       blockStr += `
 <template name="@${i}">
   <block wx:if="{{item.type === 'view'}}">

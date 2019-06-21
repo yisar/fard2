@@ -2,10 +2,11 @@ import { options, scheduleWork } from 'fre'
 
 let uuid = 0
 let once = true
+let handlerMap = {}
 
 export function render (vdom) {
   options.platform = 'miniapp'
-  
+
   scheduleWork({
     tag: 2,
     props: {
@@ -17,9 +18,8 @@ export function render (vdom) {
     let { type, props, name } = fiber.child.child
     let vdom = { type, props, name }
     uuid = 1
-    let handler = vdom.props.children[1].props.onClick
     if (once) {
-      Page({
+      let hostCofig = {
         data: {
           vdom: {}
         },
@@ -28,13 +28,18 @@ export function render (vdom) {
           this.setData({
             vdom
           })
-        },
-        $onClick: handler
-      })
+        }
+      }
+      for (let k in handlerMap) {
+        hostCofig[k] = handlerMap[k]
+      }
+      Page(hostCofig)
       once = false
     } else {
       context.setData({ vdom })
-      context.$onClick = handler
+      for (let k in handlerMap) {
+        context[k] = handlerMap[k]
+      }
     }
   }
 }
@@ -54,13 +59,12 @@ export function h (type, props) {
     } else if (typeof vnode === 'function') {
       children = vnode
     } else {
-      children.push(
-        typeof vnode === 'object'
-          ? vnode
-          : { type: 'text', props: { nodeValue: vnode } }
-      )
+      children.push(vnode)
     }
   }
+
+  if (type === 'text' || type === 'button') props.nodeValue = children[0]
+  if (props.onClick) handlerMap[$ + uuid + 'onClick'] = props.onClick
 
   uuid++
   return {
