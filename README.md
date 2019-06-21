@@ -43,7 +43,7 @@ const Parent = () => <Child msg="Hello Fard!" />
 
 ```js
 const HelloBox = () => <Box render={value => <h1>{value}</h1>} />
-const Box = props => <div>{props.render('hello world!')}</div>
+const Box = props => <div>{props.render('Hello Fard!')}</div>
 ```
 
 ### fard-webpack-plugin
