@@ -63,7 +63,7 @@ export function h (type, props) {
     }
   }
 
-  if (type === 'text' || type === 'button') {
+  if (type === 'text' || type === 'button' || type === 'navigator') {
     props.nodeValue = children[0]
     children = []
   }

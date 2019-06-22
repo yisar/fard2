@@ -10,12 +10,9 @@ function App () {
     [
       h(Counter, { msg: 'hello fard' }),
       h(
-        'button',
+        'navigator',
         {
-          onClick: () =>
-            wx.redirectTo({
-              url: '../new/new'
-            })
+          url: '../new/new'
         },
         'go'
       )
