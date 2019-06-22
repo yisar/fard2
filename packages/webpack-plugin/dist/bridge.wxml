@@ -8,6 +8,9 @@
 <template name="image">
   <image class="{{props.class}}" src="{{props.src}}"></image>
 </template>
+<template name="hook">
+  <template is="{{child.name}}" data="{{...child}}"></template>
+</template> 
     
 
 <template name="view$1">
