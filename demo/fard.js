@@ -18,7 +18,7 @@ options.commitWork = fiber => {
   }
 }
 
-export function render (vdom, el) {
+export function render (vdom) {
   uuid = 1
 
   let hostCofig = {
@@ -52,10 +52,6 @@ export function h (type, props) {
     let vnode = rest.pop()
     if (vnode && vnode.pop) {
       for (length = vnode.length; length--;) rest.push(vnode[length])
-    } else if (vnode === null || vnode === true || vnode === false) {
-      vnode = {
-        type: () => {}
-      }
     } else if (typeof vnode === 'function') {
       children = vnode
     } else {
@@ -63,11 +59,11 @@ export function h (type, props) {
     }
   }
 
-  if (type === 'text' || type === 'button' || type === 'navigator') {
+  if (typeof children[0] === 'string' || typeof children[0] === 'number') {
     props.nodeValue = children[0]
     children = []
   }
-  if ((props || {}).onClick) {
+  if (props && props.onClick) {
     let key = '$' + uuid + 'onClick'
     handlerMap[key] = props.onClick || ''
     props.onclick = key
@@ -78,10 +74,12 @@ export function h (type, props) {
     uuid++
   }
 
+  const isFn = typeof type === 'function'
+
   return {
     type,
-    name: typeof type === 'function' ? 'hook' : type,
-    child: typeof type === 'function' ? type(props) : null,
+    name: isFn ? 'hook' : type,
+    child: isFn ? type(props) : null,
     props: { ...props, children }
   }
 }
