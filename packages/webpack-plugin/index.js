@@ -20,6 +20,9 @@ class FardWebpackPlugin {
 <template name="hook">
   <template is="{{child.name}}" data="{{...child}}"></template>
 </template>
+<template name="navigator">
+  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
+</template>
     ` + '\n\r'
     
     for (let i = 1; i < this.nodes; i++) {
