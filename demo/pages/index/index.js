@@ -8,13 +8,14 @@ function App () {
       class: 'app'
     },
     [
-      h(Counter, { msg: 'hello fard' }),
+      h(Counter, { msg: 'I am props' }),
       h(
         'navigator',
         {
-          url: '../new/new'
+          url: '../user/user?name=jack',
+          class: 'link'
         },
-        'go'
+        'go jack'
       )
     ]
   )
