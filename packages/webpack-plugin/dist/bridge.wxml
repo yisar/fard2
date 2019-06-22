@@ -20,7 +20,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -47,7 +47,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -74,7 +74,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -101,7 +101,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -128,7 +128,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -155,7 +155,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -182,7 +182,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -209,7 +209,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -236,7 +236,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -263,7 +263,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -290,7 +290,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -317,7 +317,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -344,7 +344,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -371,7 +371,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -398,7 +398,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -425,7 +425,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -452,7 +452,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -479,7 +479,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
@@ -506,7 +506,7 @@
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
   
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{component}}">
     <my-component props="{{props}}"></my-component>
   </block>
 
