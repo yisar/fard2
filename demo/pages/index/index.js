@@ -16,7 +16,12 @@ function App () {
           class: 'link'
         },
         'go jack'
-      )
+      ),
+      h('video', {
+        class:'tv',
+        src:
+          'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/607272_aef7b86dff4ebf97649415dc1359bf7f.mp4'
+      })
     ]
   )
 }

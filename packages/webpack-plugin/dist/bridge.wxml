@@ -11,6 +11,12 @@
 <template name="hook">
   <template is="{{child.name}}" data="{{...child}}"></template>
 </template>
+<template name="navigator">
+  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
+</template>
+<template name="video">
+  <video class="{{props.class}}" src="{{props.src}}"></video>
+</template>
     
 
 <template name="view$1">

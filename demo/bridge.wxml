@@ -1,3 +1,4 @@
+
 <template name="text">
   <text class="{{props.class}}">{{props.nodeValue}}</text>
 </template>
@@ -7,19 +8,17 @@
 <template name="image">
   <image class="{{props.class}}" src="{{props.src}}"></image>
 </template>
-<template name="navigator">
-  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
-</template>
 <template name="hook">
   <template is="{{child.name}}" data="{{...child}}"></template>
 </template>
-<template name="view$0">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
+<template name="navigator">
+  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
 </template>
+<template name="video">
+  <video class="{{props.class}}" src="{{props.src}}"></video>
+</template>
+    
+
 <template name="view$1">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -27,6 +26,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$2">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -34,6 +34,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$3">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -41,6 +42,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$4">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -48,6 +50,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$5">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -55,6 +58,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$6">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -62,6 +66,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$7">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -69,6 +74,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$8">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -76,6 +82,7 @@
     </block>
   </view>
 </template>
+
 <template name="view$9">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
@@ -83,3 +90,4 @@
     </block>
   </view>
 </template>
+

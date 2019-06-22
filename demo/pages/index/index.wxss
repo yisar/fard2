@@ -18,12 +18,17 @@
   text-align: center;
   font-size: 12px;
   display: block;
-  color: #888
+  color: #888;
 }
-.link{
+.link {
   text-align: center;
   color: #03db6c;
   text-decoration: underline;
   margin-top: 10px;
+}
 
+.tv {
+  width: 100%;
+  margin-top: 10px;
+  height: 180px;
 }

@@ -23,6 +23,9 @@ class FardWebpackPlugin {
 <template name="navigator">
   <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
 </template>
+<template name="video">
+  <video class="{{props.class}}" src="{{props.src}}"></video>
+</template>
     ` + '\n\r'
     
     for (let i = 1; i < this.nodes; i++) {
