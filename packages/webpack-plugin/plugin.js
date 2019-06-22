@@ -26,8 +26,8 @@ class FardWebpackPlugin {
   <block wx:elif="{{type === 'image'}}">
     <image class="{{props.class}}" src="{{props.src}}"></image>
   </block>
-  <block wx:elif="{{child}}">
-    <template is="{{child.name}}" data="{{...child}}"></template>
+  <block wx:elif="{{mini.child}}">
+    <template is="{{mini.child.name}}" data="{{...mini.child}}"></template>
   </block>
   ${this.ignoreElementsStr()}
 </template>` + '\n\r'
@@ -40,7 +40,7 @@ class FardWebpackPlugin {
     let str = ''
     for (let k in this.ignoreElements) {
       str += `
-  <block wx:elif="{{type === 'ignore'}}">
+  <block wx:elif="{{mini.component}}">
     <${this.ignoreElements[k]} props="{{props}}"></${this.ignoreElements[k]}>
   </block>
 `

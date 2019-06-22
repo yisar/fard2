@@ -78,10 +78,15 @@ export function h (type, props) {
     props.onclick = key
   }
 
+  let miniCofig = {
+    child: typeof type === 'function' ? type(props) : null,
+    component: type.indexOf('-') > -1
+  }
+
   return {
     name: '@' + uuid,
     type,
-    child: typeof type === 'function' ? type(props) : null,
-    props: { ...props, children }
+    props: { ...props, children },
+    mini: miniCofig
   }
 }
