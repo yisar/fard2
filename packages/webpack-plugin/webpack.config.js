@@ -13,7 +13,8 @@ module.exports = {
   plugins: [
     new FardWebpackPlugin({
       filename: 'bridge.wxml',
-      nodes: 20
+      nodes: 20,
+      ignoreElements: ['my-component']
     })
   ]
 }

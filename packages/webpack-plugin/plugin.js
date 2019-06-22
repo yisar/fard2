@@ -1,12 +1,14 @@
 class FardWebpackPlugin {
-  constructor ({ filename = 'base.wxml', nodes = 20 }) {
+  constructor ({ filename = 'base.wxml', nodes = 20, ignoreElements }) {
     this.filename = filename
     this.nodes = nodes
+    this.ignoreElements = ignoreElements
   }
   createSource () {
     let blockStr = ''
     for (let i = 1; i < this.nodes; i++) {
-      blockStr += `
+      blockStr +=
+        `
 <template name="@${i}">
   <block wx:if="{{type === 'view'}}">
     <view class="{{props.class}}">
@@ -27,10 +29,23 @@ class FardWebpackPlugin {
   <block wx:elif="{{child}}">
     <template is="{{child.name}}" data="{{...child}}"></template>
   </block>
+  ${this.ignoreElementsStr()}
 </template>` + '\n\r'
     }
 
     return blockStr
+  }
+
+  ignoreElementsStr () {
+    let str = ''
+    for (let k in this.ignoreElements) {
+      str += `
+  <block wx:elif="{{type === 'ignore'}}">
+    <${this.ignoreElements[k]} props="{{props}}"></${this.ignoreElements[k]}>
+  </block>
+`
+    }
+    return str
   }
 
   apply (compiler) {
