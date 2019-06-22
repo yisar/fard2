@@ -7,7 +7,19 @@ function App () {
     {
       class: 'app'
     },
-    h(Counter, { msg: 'hello fard' })
+    [
+      h(Counter, { msg: 'hello fard' }),
+      h(
+        'button',
+        {
+          onClick: () =>
+            wx.redirectTo({
+              url: '../new/new'
+            })
+        },
+        'go'
+      )
+    ]
   )
 }
 
@@ -39,6 +51,5 @@ function Counter ({ msg }) {
     )
   ])
 }
-
 
 render(h(App, null))

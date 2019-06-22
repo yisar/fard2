@@ -1,7 +1,7 @@
 {
   "name": "fard",
   "description": "<p align=\"center\"><img src=\"https://ae01.alicdn.com/kf/HTB1gg8cc8aE3KVjSZLeq6xsSFXaQ.jpg\" alt=\"fard logo\" width=\"200px\"></p>",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./packages/core/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

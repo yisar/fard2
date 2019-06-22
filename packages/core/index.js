@@ -1,50 +1,45 @@
 import { options, scheduleWork } from 'fre'
 
 let uuid = 0
-let once = true
 let handlerMap = {}
+let that = null
+
+options.platform = 'miniapp'
+options.commitWork = fiber => {
+  uuid = 1
+  let { type, props, name } = fiber.child.child
+  let vdom = { type, props, name }
+
+  that.setData({
+    vdom
+  })
+  for (let k in handlerMap) {
+    that[k] = handlerMap[k]
+  }
+}
 
 export function render (vdom, el) {
   uuid = 1
-  options.platform = 'miniapp'
-  scheduleWork({
-    tag: 2,
-    props: {
-      children: vdom
-    }
-  })
-  let context
-  options.commitWork = fiber => {
-    uuid = 1
-    let { type, props, name } = fiber.child.child
-    let vdom = { type, props, name }
 
-    if (once) {
-      let hostCofig = {
-        data: {
-          vdom: {}
-        },
-        onLoad () {
-          context = this
-          this.setData({
-            vdom
-          })
+  let hostCofig = {
+    data: {
+      vdom: vdom.child
+    },
+    onLoad () {
+      that = this
+      scheduleWork({
+        tag: 2,
+        props: {
+          children: vdom
         }
-      }
-      for (let k in handlerMap) {
-        hostCofig[k] = handlerMap[k]
-      }
-      Page(hostCofig)
-      once = false
-    } else {
-      context.setData({
-        vdom
       })
-      for (let k in handlerMap) {
-        context[k] = handlerMap[k]
-      }
     }
   }
+
+  for (let k in handlerMap) {
+    hostCofig[k] = handlerMap[k]
+  }
+  Page(hostCofig)
 }
 
 export function h (type, props) {
