@@ -5,8 +5,8 @@ let once = true
 let handlerMap = {}
 
 export function render (vdom) {
+  uuid = 1
   options.platform = 'miniapp'
-
   scheduleWork({
     tag: 2,
     props: {
@@ -15,9 +15,11 @@ export function render (vdom) {
   })
   let context
   options.commitWork = fiber => {
+    uuid = 1
     let { type, props, name } = fiber.child.child
     let vdom = { type, props, name }
-    uuid = 1
+
+    console.log(vdom)
     if (once) {
       let hostCofig = {
         data: {
@@ -71,18 +73,21 @@ export function h (type, props) {
     props.nodeValue = children[0]
     children = []
   }
-  uuid++
   if ((props || {}).onClick) {
     let key = '$' + uuid + 'onClick'
     handlerMap[key] = props.onClick || ''
     props.onclick = key
   }
 
+  if (type === 'view') {
+    type = 'view$' + uuid
+    uuid++
+  }
+
   return {
-    name: '@' + uuid,
     type,
+    name: typeof type === 'function' ? 'hook' : type,
     child: typeof type === 'function' ? type(props) : null,
-    component: type.indexOf && type.indexOf('-') > -1,
     props: { ...props, children }
   }
 }

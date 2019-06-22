@@ -5,35 +5,36 @@ class FardWebpackPlugin {
     this.ignoreElements = ignoreElements
   }
   createSource () {
-    let blockStr = ''
+    let viewStr = ''
+    let staticStr =
+      `
+<template name="text">
+  <text class="{{props.class}}">{{props.nodeValue}}</text>
+</template>
+<template name="button">
+  <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+</template>
+<template name="image">
+  <image class="{{props.class}}" src="{{props.src}}"></image>
+</template>
+<template name="hook">
+  <template is="{{child.name}}" data="{{...child}}"></template>
+</template> 
+    ` + '\n\r'
+    
     for (let i = 1; i < this.nodes; i++) {
-      blockStr +=
+      viewStr +=
         `
-<template name="@${i}">
-  <block wx:if="{{type === 'view'}}">
-    <view class="{{props.class}}">
-      <block wx:for="{{props.children}}" wx:key="">
-        <template is="{{item.name}}" data="{{...item}}"></template>
-      </block>
-    </view>
-  </block>
-  <block wx:elif="{{type === 'button'}}">
-    <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
-  </block>
-  <block wx:elif="{{type === 'text'}}">
-    <text class="{{props.class}}">{{props.nodeValue}}</text>
-  </block>
-  <block wx:elif="{{type === 'image'}}">
-    <image class="{{props.class}}" src="{{props.src}}"></image>
-  </block>
-  <block wx:elif="{{child}}">
-    <template is="{{child.name}}" data="{{...child}}"></template>
-  </block>
-  ${this.ignoreElementsStr()}
+<template name="view$${i}">
+  <view class="{{props.class}}">
+    <block wx:for="{{props.children}}" wx:key="">
+      <template is="{{item.type}}" data="{{...item}}"></template>
+    </block>
+  </view>
 </template>` + '\n\r'
     }
 
-    return blockStr
+    return staticStr + viewStr
   }
 
   ignoreElementsStr () {
