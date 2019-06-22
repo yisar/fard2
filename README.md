@@ -61,7 +61,7 @@ plugins: [
   new FardWebpackPlugin({
     filename: 'bridge.wxml', //事先生成的 bridge template
     nodes: 20, // 每个组件的最大节点数，数量越少，性能越好
-    ignoreElements: ['my-component'], //设置忽略元素，渲染时会将其认为是原生组件而不是 react 组件
+    ignoreElements: ['my-component'], //设置忽略元素，渲染时会将其认为是原生组件而不是 fre 组件
   }),
 ]
 ```
