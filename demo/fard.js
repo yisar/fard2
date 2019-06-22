@@ -23,7 +23,7 @@ export function render (vdom) {
 
   let hostCofig = {
     data: {
-      vdom: vdom.child
+      vdom: {}
     },
     onLoad () {
       that = this
