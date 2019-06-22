@@ -1,2 +1,5 @@
 <import src="../../bridge.wxml"/>
 <template is="{{vdom.name}}" wx:if="{{vdom.name}}" data="{{...vdom}}"/>
+
+<!-- pages/new/new.wxml
+<text>index</text> -->

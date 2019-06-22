@@ -12,6 +12,13 @@
   <template is="{{child.name}}" data="{{...child}}"></template>
 </template>
     
+<template name="view$0">
+  <view class="{{props.class}}">
+    <block wx:for="{{props.children}}" wx:key="">
+      <template is="{{item.name}}" data="{{...item}}"></template>
+    </block>
+  </view>
+</template>
 
 <template name="view$1">
   <view class="{{props.class}}">

@@ -4,9 +4,9 @@ let uuid = 0
 let once = true
 let handlerMap = {}
 
-export function render (vdom) {
+export function render (vdom, el) {
+  uuid = 1
   options.platform = 'miniapp'
-
   scheduleWork({
     tag: 2,
     props: {
@@ -15,9 +15,10 @@ export function render (vdom) {
   })
   let context
   options.commitWork = fiber => {
+    uuid = 1
     let { type, props, name } = fiber.child.child
     let vdom = { type, props, name }
-    uuid = 1
+
     if (once) {
       let hostCofig = {
         data: {
@@ -36,7 +37,9 @@ export function render (vdom) {
       Page(hostCofig)
       once = false
     } else {
-      context.setData({ vdom })
+      context.setData({
+        vdom
+      })
       for (let k in handlerMap) {
         context[k] = handlerMap[k]
       }
@@ -55,7 +58,9 @@ export function h (type, props) {
     if (vnode && vnode.pop) {
       for (length = vnode.length; length--;) rest.push(vnode[length])
     } else if (vnode === null || vnode === true || vnode === false) {
-      vnode = { type: () => {} }
+      vnode = {
+        type: () => {}
+      }
     } else if (typeof vnode === 'function') {
       children = vnode
     } else {
@@ -67,16 +72,21 @@ export function h (type, props) {
     props.nodeValue = children[0]
     children = []
   }
-  uuid++
   if ((props || {}).onClick) {
     let key = '$' + uuid + 'onClick'
     handlerMap[key] = props.onClick || ''
     props.onclick = key
   }
 
+  if (type === 'view') {
+    type = 'view$' + uuid
+    uuid++
+  }
+
   return {
-    name: '@' + uuid,
     type,
+    name: typeof type === 'function' ? 'hook' : type,
+    child: typeof type === 'function' ? type(props) : null,
     props: { ...props, children }
   }
 }
