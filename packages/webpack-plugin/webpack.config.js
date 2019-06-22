@@ -1,10 +1,10 @@
 const path = require('path')
-const FardWebpackPlugin = require('./plugin')
+const FardWebpackPlugin = require('.')
 
 module.exports = {
   mode: 'development',
   entry: {
-    main: './index.js'
+    main: './main.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
