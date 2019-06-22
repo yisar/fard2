@@ -10,7 +10,8 @@
 </template>
 <template name="hook">
   <template is="{{child.name}}" data="{{...child}}"></template>
-</template>  
+</template>
+    
 
 <template name="view$1">
   <view class="{{props.class}}">
@@ -77,86 +78,6 @@
 </template>
 
 <template name="view$9">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$10">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$11">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$12">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$13">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$14">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$15">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$16">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$17">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$18">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>
-
-<template name="view$19">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
       <template is="{{item.name}}" data="{{...item}}"></template>

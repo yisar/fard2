@@ -19,7 +19,7 @@ class FardWebpackPlugin {
 </template>
 <template name="hook">
   <template is="{{child.name}}" data="{{...child}}"></template>
-</template> 
+</template>
     ` + '\n\r'
     
     for (let i = 1; i < this.nodes; i++) {
@@ -28,7 +28,7 @@ class FardWebpackPlugin {
 <template name="view$${i}">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.type}}" data="{{...item}}"></template>
+      <template is="{{item.name}}" data="{{...item}}"></template>
     </block>
   </view>
 </template>` + '\n\r'
