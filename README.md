@@ -46,7 +46,7 @@ const HelloBox = () => <Box render={value => <text>{value}</text>} />
 const Box = props => <view>{props.render('Hello Fard!')}</view>
 ```
 
-### 生命周期
+#### 生命周期
 
 由于 render 一次相当于生成一个 Page，所以支持 Page 的生命周期，它通过跟组件的 props 进行传递
 
