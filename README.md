@@ -46,6 +46,23 @@ const HelloBox = () => <Box render={value => <text>{value}</text>} />
 const Box = props => <view>{props.render('Hello Fard!')}</view>
 ```
 
+### 生命周期
+
+由于 render 一次相当于生成一个 Page，所以支持 Page 的生命周期，它通过跟组件的 props 进行传递
+
+```js
+const onLoad = () => console.log('onLoad……')
+const onShow = () => console.log('onShow……')
+const onReady = () => console.log('onReady……')
+const onHide = () => console.log('onHide……')
+
+render(
+  <App onLoad={onLoad} onShow={onShow} onReady={onReady} onHide={onHide} />
+)
+```
+
+注意，只有跟组件和原生组件拥有生命周期，而内置的 fre 组件，请使用 `useEffect`
+
 ### fard-webpack-plugin
 
 fard 原理上是无需编译的，但是小程序不支持 babel 不支持 stylus ，最终还是需要 webpack 打包
@@ -61,7 +78,9 @@ plugins: [
   new FardWebpackPlugin({
     filename: 'bridge.wxml', //事先生成的 bridge template
     nodes: 10, // jsx 允许的嵌套层级，越小性能越好
-    ignoreElements: ['my-component'], //设置忽略元素，渲染时会将其认为是原生组件而不是 fre 组件
+    ignoreElements: {
+      'my-component': ['name', 'msg'],
+    }, //设置忽略元素，渲染时会将其认为是原生组件而不是 fre 组件
   }),
 ]
 ```
