@@ -17,7 +17,20 @@
 <template name="video">
   <video class="{{props.class}}" src="{{props.src}}"></video>
 </template>
-    
+<template name="view">
+  <view class="{{props.class}}">
+    <block wx:for="{{props.children}}" wx:key="">
+      <template is="{{item.name}}" data="{{...item}}"></template>
+    </block>
+  </view>
+</template>
+<template name="scroll-view">
+  <scroll-view class="{{props.class}}">
+    <block wx:for="{{props.children}}" wx:key="">
+      <template is="{{item.name}}" data="{{...item}}"></template>
+    </block>
+  </scroll-view>
+</template>
 
 <template name="view$1">
   <view class="{{props.class}}">

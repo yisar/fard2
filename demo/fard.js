@@ -10,6 +10,8 @@ options.commitWork = fiber => {
   let { type, props, name } = fiber.child.child
   let vdom = { type, props, name }
 
+  console.log(vdom)
+
   that.setData({
     vdom
   })
@@ -73,6 +75,8 @@ export function h (type, props) {
     type = 'view$' + uuid
     uuid++
   }
+
+  if (type === 'scroll-view') uuid = 1
 
   const isFn = typeof type === 'function'
 
