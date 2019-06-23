@@ -20,25 +20,20 @@ options.commitWork = fiber => {
 
 export function render (vdom) {
   uuid = 1
-  let { onLoad, onReady, onShow, onHide } = vdom.child.props
 
   let hostCofig = {
     data: {
       vdom: {}
     },
-    onLoad: () => {
+    onLoad () {
       that = this
-      onLoad()
       scheduleWork({
         tag: 2,
         props: {
           children: vdom
         }
       })
-    },
-    onReady: onReady(),
-    onShow: onShow(),
-    onHide: onHide()
+    }
   }
 
   for (let k in handlerMap) {

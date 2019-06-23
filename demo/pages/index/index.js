@@ -2,12 +2,13 @@ import { useState } from 'fre'
 import { h, render } from '../../fard'
 
 function App () {
-  return h('scroll-view', {}, [
-    h('view', {}, [h('view',{
-      class:'item'
-    })]),
-    h('view', {}, [h('view')])
-  ])
+  return h(
+    'view',
+    {
+      class: 'app'
+    },
+    h(Counter, { msg: 'hello fard' })
+  )
 }
 
 function Counter ({ msg }) {
@@ -39,18 +40,11 @@ function Counter ({ msg }) {
   ])
 }
 
-render(h(App, null))
-
-// [
-//   h(Counter, { msg: 'I am props' }),
-//   h(
-//     'navigator',
-//     {
-//       url: '../user/user?name=jack',
-//       class: 'link'
-//     },
-//     'go jack'
-//   ),
-//   h('view', {}, [h('text', {}, 'hello world')]),
-//   h('view', {}, [h('text', {}, 'hello fard')])
-// ]
+render(
+  h(App, {
+    onLoad: () => console.log('onLoad……'),
+    onReady: () => console.log('onReady……'),
+    onShow: () => console.log('onShow……'),
+    onHide: () => console.log('onHide……')
+  })
+)

@@ -10,8 +10,6 @@ options.commitWork = fiber => {
   let { type, props, name } = fiber.child.child
   let vdom = { type, props, name }
 
-  console.log(vdom)
-
   that.setData({
     vdom
   })
@@ -22,20 +20,24 @@ options.commitWork = fiber => {
 
 export function render (vdom) {
   uuid = 1
-
+  let props = vdom.props
   let hostCofig = {
     data: {
       vdom: {}
     },
     onLoad () {
       that = this
+      props.onLoad && props.onLoad()
       scheduleWork({
         tag: 2,
         props: {
           children: vdom
         }
       })
-    }
+    },
+    onShow: () => props.onShow && props.onShow(),
+    onReady: () => props.onReady && props.onReady(),
+    onHide: () => props.onHide && props.onHide()
   }
 
   for (let k in handlerMap) {
@@ -75,8 +77,6 @@ export function h (type, props) {
     type = 'view$' + uuid
     uuid++
   }
-
-  if (type === 'scroll-view') uuid = 1
 
   const isFn = typeof type === 'function'
 
