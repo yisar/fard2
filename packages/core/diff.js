@@ -1,3 +1,6 @@
+// Largely inspired by:
+// * https://github.com/Tencent/westore/blob/master/packages/westore/utils/diff.js
+
 const isArray = Array.isArray
 let prevLevel = 0
 let nextLevel = 0
