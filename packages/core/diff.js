@@ -33,26 +33,26 @@ function walk(prev, next, path, out) {
 
             if (!isArray(nextValue) && typeof nextValue !== 'object') {
                 if (nextValue != prev[key]) {
-                    setOut(out, (path == '' ? '' : path + ".") + key, nextValue)
+                    setOut(out, path + '.' + key, nextValue)
                 }
             } else if (isArray(nextValue)) {
                 if (!isArray(prevValue)) {
-                    setOut(out, (path == '' ? '' : path + ".") + key, nextValue)
+                    setOut(out, path + '.' + key, nextValue)
                 } else {
                     if (nextValue.length < prevValue.length) {
-                        setOut(out, (path == '' ? '' : path + ".") + key, nextValue)
+                        setOut(out, path + '.' + key, nextValue)
                     } else {
                         nextValue.forEach((item, index) => {
-                            walk(item, prevValue[index], (path == '' ? '' : path + ".") + key + '[' + index + ']', out)
+                            walk(item, prevValue[index], path + '.' + key + '[' + index + ']', out)
                         })
                     }
                 }
             } else if (typeof nextValue === 'object') {
                 if (typeof prevValue !== 'object') {
-                    setOut(out, (path == '' ? '' : path + ".") + key, nextValue)
+                    setOut(out, path + '.' + key, nextValue)
                 } else {
                     for (let nKey in nextValue) {
-                        walk(nextValue[nKey], prevValue[nKey], (path == '' ? '' : path + ".") + key + '.' + nKey, out)
+                        walk(nextValue[nKey], prevValue[nKey], path + '.' + key + '.' + nKey, out)
                     }
                 }
             }
@@ -76,6 +76,6 @@ function walk(prev, next, path, out) {
 
 function setOut(out, key, value) {
     if (typeof value != 'function') {
-        out[key] = value
+        out[key.substr(1)] = value
     }
 }
