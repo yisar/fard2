@@ -4,7 +4,7 @@
 
 :snowman: [fre](https://github.com/132yse/fre) 转小程序的新思路 ♂ learn once, write anywhere.
 
-> 工作日每天搞一点点，节假日会大更新~
+> 工作日只处理 issue，节假日迭代~
 
 ### Use
 
