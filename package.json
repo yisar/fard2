@@ -4,7 +4,8 @@
   "version": "0.0.4",
   "main": "./packages/core/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -12,9 +13,14 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/132yse/fard/issues"
   },
-  "homepage": "https://github.com/132yse/fard#readme"
+  "homepage": "https://github.com/132yse/fard#readme",
+  "devDependencies": {
+    "rollup": "^1.16.2",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-license": "^0.9.0"
+  }
 }
