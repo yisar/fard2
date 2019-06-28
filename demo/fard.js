@@ -10,6 +10,8 @@ options.commitWork = fiber => {
   let { type, props, name } = fiber.child.child
   let vdom = { type, props, name }
 
+  console.log(vdom)
+
   that.setData({
     vdom
   })
