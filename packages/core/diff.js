@@ -6,6 +6,8 @@ const OBJECTTYPE = '[object Object]'
 const FUNCTIONTYPE = '[object Function]'
 let prevLevel = 0
 let nextLevel = 0
+let handlerId = 0
+let handlerMap = {}
 
 function diff (prevObj, nextObj) {
   const out = {}
@@ -56,11 +58,15 @@ function idiff (prev, next, path, out) {
         if (type(prevValue) != OBJECTTYPE) {
           setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
         } else {
-          for (let nKey in nextValue) {
+          for (let name in nextValue) {
+            if (name[0] === 'o' && name[1] === 'n') {
+              handlerMap[name + handlerId] = nextValue[name]
+              handlerId++
+            }
             idiff(
-              prevValue[nKey],
-              nextValue[nKey],
-              (path == '' ? '' : path + '.') + key + '.' + nKey,
+              prevValue[name],
+              nextValue[name],
+              (path == '' ? '' : path + '.') + key + '.' + name,
               out
             )
           }
@@ -92,7 +98,9 @@ function idiff (prev, next, path, out) {
 }
 
 function setOut (out, key, value) {
-  out[key] = value
+  if (type(value) != FUNCTIONTYPE) {
+    out[key] = value
+  }
 }
 
 function type (obj) {

@@ -1,6 +1,5 @@
 import { options, scheduleWork } from 'fre'
 
-let uuid = 0
 let handlerMap = {}
 let that = null
 
@@ -40,46 +39,4 @@ export function render (vdom) {
     hostCofig[k] = handlerMap[k]
   }
   Page(hostCofig)
-}
-
-export function h (type, props) {
-  let rest = []
-  let children = []
-  let length = arguments.length
-
-  while (length-- > 2) rest.push(arguments[length])
-  while (rest.length) {
-    let vnode = rest.pop()
-    if (vnode && vnode.pop) {
-      for (length = vnode.length; length--;) rest.push(vnode[length])
-    } else if (typeof vnode === 'function') {
-      children = vnode
-    } else {
-      children.push(vnode)
-    }
-  }
-
-  if (typeof children[0] === 'string' || typeof children[0] === 'number') {
-    props.nodeValue = children[0]
-    children = []
-  }
-  if (props && props.onClick) {
-    let key = '$' + uuid + 'onClick'
-    handlerMap[key] = props.onClick || ''
-    props.onclick = key
-  }
-
-  if (type === 'view') {
-    type = 'view$' + uuid
-    uuid++
-  }
-
-  const isFn = typeof type === 'function'
-
-  return {
-    type,
-    name: isFn ? 'hook' : type,
-    child: isFn ? type(props) : null,
-    props: { ...props, children }
-  }
 }
