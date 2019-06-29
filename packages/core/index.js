@@ -14,7 +14,11 @@ options.commitWork = fiber => {
   let { type, props } = fiber.child.child
   let vdom = { type, props }
 
+  console.log(vdom)
+
   const json = diff(oldVdom, vdom)
+
+  console.log(json)
 
   if (oldVdom) {
     that.setData(json)
@@ -75,18 +79,14 @@ function idiff (prev, next, path, out) {
         if (prevValue && type(prevValue) != ARRAYTYPE) {
           setOut(out, path + '.' + key, nextValue)
         } else {
-          if (nextValue.length < prevValue.length) {
-            setOut(out, path + '.' + key, nextValue)
-          } else {
-            nextValue.forEach((item, index) => {
-              idiff(
-                prevValue[index],
-                item,
-                path + '.' + key + '[' + index + ']',
-                out
-              )
-            })
-          }
+          nextValue.forEach((item, index) => {
+            idiff(
+              prevValue && prevValue[index],
+              item,
+              path + '.' + key + '[' + index + ']',
+              out
+            )
+          })
         }
       } else if (type(nextValue) == OBJECTTYPE) {
         if (prevValue && type(prevValue) != OBJECTTYPE) {
@@ -141,14 +141,47 @@ function type (obj) {
 
 function wireVnode (vnode) {
   if (type(vnode.type) == FUNCTIONTYPE) {
-    vnode.name = 'component'
-    vnode.render = vnode.type(vnode.props)
+    if (vnode.render.type === 'view') {
+      vnode.render.name = 'view' + viewLevel
+    }
   } else {
-    vnode.name = vnode.type
     if (vnode.type == 'view') {
       vnode.type = 'view' + viewLevel
       viewLevel++
     }
+    vnode.name = vnode.type
   }
   return vnode
+}
+
+export function h (type, props) {
+  let rest = []
+  let children = []
+  let length = arguments.length
+
+  while (length-- > 2) rest.push(arguments[length])
+  while (rest.length) {
+    let vnode = rest.pop()
+    if (vnode && vnode.pop) {
+      for (length = vnode.length; length--;) rest.push(vnode[length])
+    } else if (typeof vnode === 'function') {
+      children = vnode
+    } else {
+      children.push(vnode)
+    }
+  }
+
+  if (typeof children[0] === 'string' || typeof children[0] === 'number') {
+    props.nodeValue = children[0]
+    children = []
+  }
+
+  const isFn = typeof type === 'function'
+
+  return {
+    type,
+    name: isFn ? 'component' : type,
+    render: isFn ? type(props) : null,
+    props: { ...props, children }
+  }
 }
