@@ -7,7 +7,7 @@ function App () {
     {
       class: 'app'
     },
-    [h(Counter, { msg: 'hello fard' })]
+    [h(Counter, { msg: 'hello fard' }), h(Child, null)]
   )
 }
 
@@ -15,15 +15,15 @@ function Counter ({ msg }) {
   const [count, setCount] = useState(0)
 
   return h('view', {}, [
-    h('view', {}, [h('text', {}, '111')]),
-    h('view', {}, [h('text', {}, '222')]),
-    h(
-      'text',
-      {
-        class: 'text'
-      },
-      count
-    ),
+    h('view', {}, [
+      h(
+        'text',
+        {
+          class: 'text'
+        },
+        count
+      )
+    ]),
     h(
       'button',
       {
@@ -42,11 +42,11 @@ function Counter ({ msg }) {
   ])
 }
 
-// function App () {
-//   return h('view', {}, [
-//     h('view', {}, [h('text', {}, '111')]),
-//     h('view', {}, [h('text', {}, '222')])
-//   ])
-// }
+function Child () {
+  return h('view', {}, [
+    h('view', {}, [h('text', {}, '111')]),
+    h('view', {}, [h('text', {}, '222')])
+  ])
+}
 
 render(h(App, null))

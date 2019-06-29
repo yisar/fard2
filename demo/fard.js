@@ -111,12 +111,16 @@ function idiff (prev, next, path, out) {
     if (prev && type(prev) != ARRAYTYPE) {
       setOut(out, path, next)
     } else {
-      if (next.length && next.some(item => item.type == 'view')) {
+      const isContain = item => {
+        return item.type == 'view' || item.render
+      }
+      if (next.length && next.some(isContain)) {
         viewLevel++
       }
       for (let index in next) {
         let last = prev && prev[index]
         next[index] = wireVnode(next[index])
+
         idiff(
           last,
           next[index],
@@ -144,7 +148,6 @@ function wireVnode (vnode) {
   if (type(vnode.type) == FUNCTIONTYPE) {
     if (vnode.render.type === 'view') {
       vnode.render.name = 'view' + viewLevel
-      viewLevel++
     }
   } else {
     if (vnode.type == 'view') {
@@ -152,7 +155,7 @@ function wireVnode (vnode) {
     }
     vnode.name = vnode.type
   }
-  return vnode
+  return vnode.render || vnode
 }
 
 export function h (type, props) {
