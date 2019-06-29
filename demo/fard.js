@@ -111,9 +111,7 @@ function idiff (prev, next, path, out) {
     if (prev && type(prev) != ARRAYTYPE) {
       setOut(out, path, next)
     } else {
-      const isContain = item => {
-        return item.type == 'view' || item.render
-      }
+      const isContain = (item) => item.type == 'view' || item.render
       if (next.length && next.some(isContain)) {
         viewLevel++
       }
