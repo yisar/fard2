@@ -1,5 +1,5 @@
-import { useState, h } from 'fre'
-import { render } from '../../fard'
+import { useState } from 'fre'
+import { render, h } from '../../fard'
 
 function App () {
   return h(
@@ -11,7 +11,7 @@ function App () {
   )
 }
 
-function Counter () {
+function Counter ({ msg }) {
   const [count, setCount] = useState(0)
 
   return h('view', {}, [
@@ -26,13 +26,18 @@ function Counter () {
       'button',
       {
         class: 'button',
-        onClick: () => {
-          setCount(count + 1)
-        }
+        onClick: () => setCount(count + 1)
       },
       '+'
+    ),
+    h(
+      'text',
+      {
+        class: 'footer'
+      },
+      msg
     )
   ])
 }
 
-render(h(Counter, null))
+render(h(App, null))

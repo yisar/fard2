@@ -12,7 +12,7 @@ class FardWebpackPlugin {
   <text class="{{props.class}}">{{props.nodeValue}}</text>
 </template>
 <template name="button">
-  <button class="{{props.class}}" bindtap="{{props.onclick}}">{{props.nodeValue}}</button>
+  <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.nodeValue}}</button>
 </template>
 <template name="image">
   <image class="{{props.class}}" src="{{props.src}}"></image>
@@ -20,18 +20,18 @@ class FardWebpackPlugin {
 <template name="navigator">
   <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
 </template>
-<template name="video">
-  <video class="{{props.class}}" src="{{props.src}}"></video>
+<template name="component">
+  <template is="{{render.name}}" data="{{...render}}"></template>
 </template>
     ` + '\n\r'
-    
+
     for (let i = 0; i < this.viewLevel; i++) {
       viewStr +=
         `
 <template name="view${i}">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.type}}" data="{{...item}}"></template>
+      <template is="{{item.name}}" data="{{...item}}"></template>
     </block>
   </view>
 </template>` + '\n\r'
