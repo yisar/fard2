@@ -16,6 +16,8 @@ options.commitWork = fiber => {
 
   const diffRes = diff(oldVdom, vdom)
 
+  // console.log(vdom)
+
   if (oldVdom) {
     that.setData(diffRes)
   } else {

@@ -43,14 +43,11 @@ function Counter ({ msg }) {
 }
 
 function Child () {
-  return h('view', {}, [h(Three, null)])
+  return h('view', {}, [h(Three, null), h('view', {}, [h('text', {}, '222')])])
 }
 
 function Three () {
-  return h('view', {}, [
-    h('view', {}, [h('text', {}, '111')]),
-    h('view', {}, [h('text', {}, '222')])
-  ])
+  return h('view', {}, [h('text', {}, '111')])
 }
 
 render(h(App, null))
