@@ -1,15 +1,15 @@
 
 <template name="text">
-  <text class="{{props.class}}">{{props.nodeValue}}</text>
+  <text class="{{props.class}}">{{props.children[0].props.nodeValue}}</text>
 </template>
 <template name="button">
-  <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.nodeValue}}</button>
+  <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.children[0].props.nodeValue}}</button>
 </template>
 <template name="image">
   <image class="{{props.class}}" src="{{props.src}}"></image>
 </template>
 <template name="navigator">
-  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
+  <navigator class="{{props.class}}" url="{{props.url}}">{{props.children[0].props.nodeValue}}</navigator>
 </template>
 <template name="video">
   <video class="{{props.class}}" src="{{props.src}}"></video>
