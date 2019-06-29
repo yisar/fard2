@@ -1,27 +1,35 @@
 import { options, scheduleWork } from 'fre'
 
-let uuid = 0
+const ARRAYTYPE = '[object Array]'
+const OBJECTTYPE = '[object Object]'
+const FUNCTIONTYPE = '[object Function]'
+let prevLevel = 0
+let nextLevel = 0
+let handlerId = 0
 let handlerMap = {}
 let that = null
+let oldVdom = {}
 
 options.platform = 'miniapp'
 options.commitWork = fiber => {
-  uuid = 1
-  let { type, props, name } = fiber.child.child
-  let vdom = { type, props, name }
+  let { type, props } = fiber.child.child
+  let vdom = { type, props }
 
-  console.log(vdom)
+  let json = diff(oldVdom, vdom)
 
-  that.setData({
-    vdom
-  })
+  if (oldVdom.type) {
+    that.setData(json)
+  } else {
+    that.setData(vdom)
+  }
+  oldVdom = vdom
+
   for (let k in handlerMap) {
     that[k] = handlerMap[k]
   }
 }
 
 export function render (vdom) {
-  uuid = 1
   let props = vdom.props
   let hostCofig = {
     data: {
@@ -48,44 +56,88 @@ export function render (vdom) {
   Page(hostCofig)
 }
 
-export function h (type, props) {
-  let rest = []
-  let children = []
-  let length = arguments.length
+function diff (prevObj, nextObj) {
+  const out = {}
+  idiff(prevObj, nextObj, '', out)
+  return out
+}
 
-  while (length-- > 2) rest.push(arguments[length])
-  while (rest.length) {
-    let vnode = rest.pop()
-    if (vnode && vnode.pop) {
-      for (length = vnode.length; length--;) rest.push(vnode[length])
-    } else if (typeof vnode === 'function') {
-      children = vnode
-    } else {
-      children.push(vnode)
+function idiff (prev, next, path, out) {
+  if (prev === next) return
+
+  if (type(next) == OBJECTTYPE) {
+    wireVnode(next)
+    for (let key in next) {
+      const nextValue = next[key]
+      const prevValue = prev && prev[key]
+
+      if (type(nextValue) !== ARRAYTYPE && type(nextValue) !== OBJECTTYPE) {
+        if (prev && nextValue != prev[key]) {
+          setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+        }
+      } else if (type(nextValue) == ARRAYTYPE) {
+        if (prevValue && type(prevValue) != ARRAYTYPE) {
+          setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+        } else {
+          if (nextValue.length < prevValue.length) {
+            setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+          } else {
+            nextValue.forEach((item, index) => {
+              idiff(
+                prevValue[index],
+                item,
+                (path == '' ? '' : path + '.') + key + '[' + index + ']',
+                out
+              )
+            })
+          }
+        }
+      } else if (type(nextValue) == OBJECTTYPE) {
+        if (prevValue && type(prevValue) != OBJECTTYPE) {
+          setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+        } else {
+          for (let name in nextValue) {
+            idiff(
+              prevValue && prevValue[name],
+              nextValue[name],
+              (path == '' ? '' : path + '.') + key + '.' + name,
+              out
+            )
+          }
+        }
+      }
     }
+  } else if (type(next) == ARRAYTYPE) {
+    if (prev && type(prev) != ARRAYTYPE) {
+      setOut(out, path, next)
+    } else {
+      for(let index in next){
+        let last = prev && prev[index]
+        next[index] = wireVnode(next[index])
+        idiff(last, next[index], (path == '' ? '' : path) + '[' + index + ']', out)
+      }
+    }
+  } else {
+    setOut(out, path, next)
   }
+}
 
-  if (typeof children[0] === 'string' || typeof children[0] === 'number') {
-    props.nodeValue = children[0]
-    children = []
+function setOut (out, key, value) {
+  if (type(value) != FUNCTIONTYPE) {
+    out[key] = value
   }
-  if (props && props.onClick) {
-    let key = '$' + uuid + 'onClick'
-    handlerMap[key] = props.onClick || ''
-    props.onclick = key
-  }
+}
 
-  if (type === 'view') {
-    type = 'view$' + uuid
-    uuid++
-  }
+function type (obj) {
+  return Object.prototype.toString.call(obj)
+}
 
-  const isFn = typeof type === 'function'
-
-  return {
-    type,
-    name: isFn ? 'hook' : type,
-    child: isFn ? type(props) : null,
-    props: { ...props, children }
+function wireVnode (vnode) {
+  if (type(vnode.type) == FUNCTIONTYPE) {
+    vnode = vnode.type(vnode.props)
+  } else if (vnode.type == 'view') {
+    vnode.type = 'view' + nextLevel
+    nextLevel++
   }
+  return vnode
 }

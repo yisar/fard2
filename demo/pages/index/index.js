@@ -1,5 +1,5 @@
-import { useState } from 'fre'
-import { h, render } from '../../fard'
+import { useState, h } from 'fre'
+import { render } from '../../fard'
 
 function App () {
   return h(
@@ -40,11 +40,4 @@ function Counter ({ msg }) {
   ])
 }
 
-render(
-  h(App, {
-    onLoad: () => console.log('onLoad……'),
-    onReady: () => console.log('onReady……'),
-    onShow: () => console.log('onShow……'),
-    onHide: () => console.log('onHide……')
-  })
-)
+render(h(App, null))
