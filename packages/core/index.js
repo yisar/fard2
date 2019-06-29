@@ -14,14 +14,10 @@ options.commitWork = fiber => {
   let { type, props } = fiber.child.child
   let vdom = { type, props }
 
-  console.log(vdom)
-
-  const json = diff(oldVdom, vdom)
-
-  console.log(json)
+  const diffRes = diff(oldVdom, vdom)
 
   if (oldVdom) {
-    that.setData(json)
+    that.setData(diffRes)
   } else {
     that.setData({ vdom })
   }
