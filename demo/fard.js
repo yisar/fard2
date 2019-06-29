@@ -3,8 +3,8 @@ import { options, scheduleWork } from 'fre'
 const ARRAYTYPE = '[object Array]'
 const OBJECTTYPE = '[object Object]'
 const FUNCTIONTYPE = '[object Function]'
-let viewLevel = 0
 let handlerId = 0
+let viewLevel = 0
 let handlerMap = {}
 let that = null
 let oldVdom = null
@@ -14,14 +14,12 @@ options.commitWork = fiber => {
   let { type, props } = fiber.child.child
   let vdom = { type, props }
 
+  const diffRes = diff(oldVdom, vdom)
+
   console.log(vdom)
 
-  const json = diff(oldVdom, vdom)
-
-  console.log(json)
-
   if (oldVdom) {
-    that.setData(json)
+    that.setData(diffRes)
   } else {
     that.setData({ vdom })
   }
@@ -113,6 +111,9 @@ function idiff (prev, next, path, out) {
     if (prev && type(prev) != ARRAYTYPE) {
       setOut(out, path, next)
     } else {
+      if (next.length && next.some(item => item.type == 'view')) {
+        viewLevel++
+      }
       for (let index in next) {
         let last = prev && prev[index]
         next[index] = wireVnode(next[index])
@@ -143,11 +144,11 @@ function wireVnode (vnode) {
   if (type(vnode.type) == FUNCTIONTYPE) {
     if (vnode.render.type === 'view') {
       vnode.render.name = 'view' + viewLevel
+      viewLevel++
     }
   } else {
     if (vnode.type == 'view') {
       vnode.type = 'view' + viewLevel
-      viewLevel++
     }
     vnode.name = vnode.type
   }
