@@ -3,9 +3,9 @@ import { options, scheduleWork } from 'fre'
 const ARRAYTYPE = '[object Array]'
 const OBJECTTYPE = '[object Object]'
 const FUNCTIONTYPE = '[object Function]'
+const handlerMap = {}
 let viewLevel = 0
 let handlerId = 0
-let handlerMap = {}
 let that = null
 let oldVdom = null
 
@@ -15,6 +15,8 @@ options.commitWork = fiber => {
   let vdom = { type, props }
 
   const diffRes = diff(oldVdom, vdom)
+
+  // console.log(vdom)
 
   if (oldVdom) {
     that.setData(diffRes)
@@ -51,6 +53,9 @@ export function render (vdom) {
 }
 
 function diff (prevObj, nextObj) {
+  // Largely inspired by:
+  // * https://github.com/Tencent/westore/blob/master/packages/westore/utils/diff.js
+  
   viewLevel = 0
   handlerId = 0
   const out = {}
@@ -109,9 +114,14 @@ function idiff (prev, next, path, out) {
     if (prev && type(prev) != ARRAYTYPE) {
       setOut(out, path, next)
     } else {
+      const isContain = item => item.type == 'view' || item.render
+      if (next.length && next.some(isContain)) {
+        viewLevel++
+      }
       for (let index in next) {
         let last = prev && prev[index]
         next[index] = wireVnode(next[index])
+
         idiff(
           last,
           next[index],
@@ -143,11 +153,10 @@ function wireVnode (vnode) {
   } else {
     if (vnode.type == 'view') {
       vnode.type = 'view' + viewLevel
-      viewLevel++
     }
     vnode.name = vnode.type
   }
-  return vnode
+  return vnode.render || vnode
 }
 
 export function h (type, props) {
