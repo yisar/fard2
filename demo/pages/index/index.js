@@ -11,7 +11,7 @@ function App () {
   )
 }
 
-function Counter ({ msg }) {
+function Counter () {
   const [count, setCount] = useState(0)
 
   return h('view', {}, [
@@ -26,18 +26,13 @@ function Counter ({ msg }) {
       'button',
       {
         class: 'button',
-        onClick: () => setCount(count + 1)
+        onClick: () => {
+          setCount(count + 1)
+        }
       },
       '+'
-    ),
-    h(
-      'text',
-      {
-        class: 'footer'
-      },
-      msg
     )
   ])
 }
 
-render(h(App, null))
+render(h(Counter, null))

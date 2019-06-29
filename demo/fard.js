@@ -9,25 +9,22 @@ let handlerMap = {}
 let that = null
 let oldVdom = null
 
-options.platform = 'miniapp'
+options.web = false
 options.commitWork = fiber => {
   let { type, props } = fiber.child.child
   let vdom = { type, props }
 
-  console.log(oldVdom, vdom)
-
-  let json = diff(oldVdom, vdom)
+  const json = diff(oldVdom, vdom)
 
   if (oldVdom) {
     that.setData(json)
   } else {
     that.setData({ vdom })
   }
-  oldVdom = vdom
-
   for (let k in handlerMap) {
     that[k] = handlerMap[k]
   }
+  oldVdom = vdom
 }
 
 export function render (vdom) {
@@ -55,6 +52,7 @@ export function render (vdom) {
 
 function diff (prevObj, nextObj) {
   viewLevel = 0
+  handlerId = 0
   const out = {}
   idiff(prevObj, nextObj, '', out)
   return out
@@ -71,20 +69,20 @@ function idiff (prev, next, path, out) {
 
       if (type(nextValue) !== ARRAYTYPE && type(nextValue) !== OBJECTTYPE) {
         if (prev && nextValue != prev[key]) {
-          setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+          setOut(out, path + '.' + key, nextValue)
         }
       } else if (type(nextValue) == ARRAYTYPE) {
         if (prevValue && type(prevValue) != ARRAYTYPE) {
-          setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+          setOut(out, path + '.' + key, nextValue)
         } else {
           if (nextValue.length < prevValue.length) {
-            setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+            setOut(out, path + '.' + key, nextValue)
           } else {
             nextValue.forEach((item, index) => {
               idiff(
                 prevValue[index],
                 item,
-                (path == '' ? '' : path + '.') + key + '[' + index + ']',
+                path + '.' + key + '[' + index + ']',
                 out
               )
             })
@@ -92,7 +90,7 @@ function idiff (prev, next, path, out) {
         }
       } else if (type(nextValue) == OBJECTTYPE) {
         if (prevValue && type(prevValue) != OBJECTTYPE) {
-          setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
+          setOut(out, path + '.' + key, nextValue)
         } else {
           for (let name in nextValue) {
             if (name[0] === 'o' && name[1] === 'n') {
@@ -104,7 +102,7 @@ function idiff (prev, next, path, out) {
             idiff(
               prevValue && prevValue[name],
               nextValue[name],
-              (path == '' ? '' : path + '.') + key + '.' + name,
+              path + '.' + key + '.' + name,
               out
             )
           }
@@ -133,7 +131,7 @@ function idiff (prev, next, path, out) {
 
 function setOut (out, key, value) {
   if (type(value) != FUNCTIONTYPE) {
-    out[key] = value
+    out['vdom' + key] = value
   }
 }
 
