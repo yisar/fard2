@@ -3,9 +3,9 @@ import { options, scheduleWork } from 'fre'
 const ARRAYTYPE = '[object Array]'
 const OBJECTTYPE = '[object Object]'
 const FUNCTIONTYPE = '[object Function]'
-let handlerId = 0
+const handlerMap = {}
 let viewLevel = 0
-let handlerMap = {}
+let handlerId = 0
 let that = null
 let oldVdom = null
 
@@ -15,8 +15,6 @@ options.commitWork = fiber => {
   let vdom = { type, props }
 
   const diffRes = diff(oldVdom, vdom)
-
-  console.log(vdom)
 
   if (oldVdom) {
     that.setData(diffRes)

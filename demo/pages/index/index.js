@@ -43,6 +43,10 @@ function Counter ({ msg }) {
 }
 
 function Child () {
+  return h('view', {}, [h(Three, null)])
+}
+
+function Three () {
   return h('view', {}, [
     h('view', {}, [h('text', {}, '111')]),
     h('view', {}, [h('text', {}, '222')])
