@@ -3,12 +3,11 @@ import { options, scheduleWork } from 'fre'
 const ARRAYTYPE = '[object Array]'
 const OBJECTTYPE = '[object Object]'
 const FUNCTIONTYPE = '[object Function]'
-let prevLevel = 0
 let nextLevel = 0
 let handlerId = 0
 let handlerMap = {}
 let that = null
-let oldVdom = {}
+let oldVdom = null
 
 options.platform = 'miniapp'
 options.commitWork = fiber => {
@@ -17,10 +16,12 @@ options.commitWork = fiber => {
 
   let json = diff(oldVdom, vdom)
 
-  if (oldVdom.type) {
+  if (oldVdom) {
     that.setData(json)
   } else {
-    that.setData(vdom)
+    console.log(vdom, handlerMap)
+    that.setData({ vdom })
+    console.log(that)
   }
   oldVdom = vdom
 
@@ -97,6 +98,12 @@ function idiff (prev, next, path, out) {
           setOut(out, (path == '' ? '' : path + '.') + key, nextValue)
         } else {
           for (let name in nextValue) {
+            if (name[0] === 'o' && name[1] === 'n') {
+              let key = name.toLowerCase() + handlerId
+              handlerMap[key] = nextValue[name]
+              nextValue[name] = key
+              handlerId++
+            }
             idiff(
               prevValue && prevValue[name],
               nextValue[name],
@@ -111,10 +118,15 @@ function idiff (prev, next, path, out) {
     if (prev && type(prev) != ARRAYTYPE) {
       setOut(out, path, next)
     } else {
-      for(let index in next){
+      for (let index in next) {
         let last = prev && prev[index]
         next[index] = wireVnode(next[index])
-        idiff(last, next[index], (path == '' ? '' : path) + '[' + index + ']', out)
+        idiff(
+          last,
+          next[index],
+          (path == '' ? '' : path) + '[' + index + ']',
+          out
+        )
       }
     }
   } else {

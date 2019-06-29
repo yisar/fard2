@@ -1,2 +1,2 @@
 <import src="../../bridge.wxml"/>
-<template is="{{vdom.name}}" wx:if="{{vdom.name}}" data="{{...vdom}}"/>
+<template is="{{vdom.type}}" wx:if="{{vdom.type}}" data="{{...vdom}}"/>

@@ -1,7 +1,7 @@
 class FardWebpackPlugin {
-  constructor ({ filename = 'base.wxml', nodes = 20, ignoreElements }) {
+  constructor ({ filename = 'base.wxml', viewLevel = 5, ignoreElements }) {
     this.filename = filename
-    this.nodes = nodes
+    this.viewLevel = viewLevel
     this.ignoreElements = ignoreElements
   }
   createSource () {
@@ -17,9 +17,6 @@ class FardWebpackPlugin {
 <template name="image">
   <image class="{{props.class}}" src="{{props.src}}"></image>
 </template>
-<template name="hook">
-  <template is="{{child.name}}" data="{{...child}}"></template>
-</template>
 <template name="navigator">
   <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
 </template>
@@ -28,13 +25,13 @@ class FardWebpackPlugin {
 </template>
     ` + '\n\r'
     
-    for (let i = 1; i < this.nodes; i++) {
+    for (let i = 0; i < this.viewLevel; i++) {
       viewStr +=
         `
-<template name="view$${i}">
+<template name="view${i}">
   <view class="{{props.class}}">
     <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
+      <template is="{{item.type}}" data="{{...item}}"></template>
     </block>
   </view>
 </template>` + '\n\r'
