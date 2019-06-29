@@ -53,6 +53,9 @@ export function render (vdom) {
 }
 
 function diff (prevObj, nextObj) {
+  // Largely inspired by:
+  // * https://github.com/Tencent/westore/blob/master/packages/westore/utils/diff.js
+  
   viewLevel = 0
   handlerId = 0
   const out = {}
@@ -111,7 +114,7 @@ function idiff (prev, next, path, out) {
     if (prev && type(prev) != ARRAYTYPE) {
       setOut(out, path, next)
     } else {
-      const isContain = (item) => item.type == 'view' || item.render
+      const isContain = item => item.type == 'view' || item.render
       if (next.length && next.some(isContain)) {
         viewLevel++
       }
