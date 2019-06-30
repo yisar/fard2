@@ -36,9 +36,9 @@ render(<Counter />)
 
 ### hooks
 
-所有 fre 的 hooks API 都是支持的，请参阅：[fre readme](https://github.com/132yse/fre)
+所有 fre 的 hooks API 都是支持的
 
-不做赘述，接下来列出 fard 额外的内容
+hooks 相关行为都发生在 fre 层，和小程序无关，不做赘述，请移步：[fre readme](https://github.com/132yse/fre)
 
 ### api
 
