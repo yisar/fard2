@@ -34,13 +34,13 @@ render(<Counter />)
 
 由于非 web 环境，不存在 dom ，所以 render 不需要第二个参数
 
-### fre API
+### hooks
 
-所有 fre 的 API 都是支持的，戳这：[fre readme](https://github.com/132yse/fre)
+所有 fre 的 hooks 都是支持的，戳这：[fre readme](https://github.com/132yse/fre)
 
 不做赘述，接下来列出 fard 额外的内容
 
-#### Lifecycle
+### Lifecycle
 
 由于 render 一次相当于生成一个 Page，所以支持 Page 的生命周期，它通过根组件的 props 进行传递
 
