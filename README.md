@@ -36,9 +36,33 @@ render(<Counter />)
 
 ### hooks
 
-所有 fre 的 hooks 都是支持的，戳这：[fre readme](https://github.com/132yse/fre)
+所有 fre 的 hooks API 都是支持的，请参阅：[fre readme](https://github.com/132yse/fre)
 
 不做赘述，接下来列出 fard 额外的内容
+
+### api
+
+fard 提供 api 对象，用来磨平各个端的差异
+
+```js
+import { h, render, api } from 'fard'
+
+function App() {
+  const toJack = () => {
+    api.navigateTo({
+      url: '../user/user?name=jack'
+    })
+  }
+  return (
+    <view>
+      <button onClick={toJack}>+</button>
+    </view>
+  )
+}
+
+render(<App />)
+```
+如上，api 等同于 wx、my、tt、swan，会根据环境自行更换命名空间
 
 ### Lifecycle
 
