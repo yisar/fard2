@@ -42,7 +42,7 @@ render(<Counter />)
 
 ### api
 
-fard 提供 api 对象，用来磨平各个端的差异
+fard 提供 api 对象，用来抹平各个端的差异
 
 ```js
 import { h, render, api } from 'fard'
