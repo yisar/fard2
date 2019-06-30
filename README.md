@@ -9,7 +9,7 @@
 ### Use
 
 ```xml
-<import src="../../bridge.wxml"/> <!--brideg.wxml 由 webpack 构建-->
+<import src="../../bridge.wxml"/> <!--brideg.wxml 由 fard-webpack-plugin 构建-->
 <template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}"/>
 ```
 
@@ -30,25 +30,19 @@ function Counter() {
 render(<Counter />)
 ```
 
-### props
+以上，改造了 render 和 h 方法，其中 h 方法无需关心
 
-fard 使用 fre 的组件化机制，通过 props 进行通信
+由于非 web 环境，不存在 dom ，所以 render 不需要第二个参数
 
-```js
-const Child = props => <text>{props.value}</text>
-const Parent = () => <Child value="Hello Fard!" />
-```
+### fre API
 
-同时支持 render props
+所有 fre 的 API 都是支持的，戳这：[fre readme](https://github.com/132yse/fre)
 
-```js
-const HelloBox = () => <Box render={value => <text>{value}</text>} />
-const Box = props => <view>{props.render('Hello Fard!')}</view>
-```
+不做赘述，接下来列出 fard 额外的内容
 
-#### 生命周期
+#### Lifecycle
 
-由于 render 一次相当于生成一个 Page，所以支持 Page 的生命周期，它通过跟组件的 props 进行传递
+由于 render 一次相当于生成一个 Page，所以支持 Page 的生命周期，它通过根组件的 props 进行传递
 
 ```js
 const onLoad = () => console.log('onLoad……')
@@ -61,7 +55,7 @@ render(
 )
 ```
 
-注意，只有跟组件和原生组件拥有生命周期，而内置的 fre 组件，请使用 `useEffect`
+注意，只有根组件和原生组件拥有生命周期，而内置的 fre 组件，请使用 `useEffect`
 
 ### fard-webpack-plugin
 
@@ -85,13 +79,30 @@ plugins: [
 ]
 ```
 
-### 性能
+### template bridge
 
-fard 每次 setData 前，会对 vdom 进行 diff，目的是寻找到最小的 setData 数据
+经过 fard-webpack-plugin 声称的 bridge.wxml 是用来桥接的文件，无需关注其内容
 
-和 fre 的 diff 不同，fre 的 diff 是为了寻找操作 dom 的最小次数
+我们只需要在我们每个 page 的 wxml 引用它即可：
 
-但是最终效果都是一样的
+```xml
+<import src="../../bridge.wxml"/>
+<template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}"/>
+```
+
+写死的，不用修改
+
+### 原理
+
+fard 之所以称之为新思路，是因为它不同于其他编译型框架，它的原理和 RN 类似，是比较好的跨端方案
+
+如图：
+
+![](http://tva1.sinaimg.cn/large/0060lm7Tly1g4jfdp3i3sj30d00mkwh0.jpg)
+
+它通过 template bridge 来桥接 fre 和小程序的 vdom，是在小程序里跑 fre 而不是将 fre 编译成小程序
+
+另外，fard 还在 setData 之前做了一层 diff 处理，性能靠谱
 
 ### shortscreen
 
