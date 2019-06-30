@@ -29,7 +29,7 @@ options.commitWork = fiber => {
   oldVdom = vdom
 }
 
-export function render (vdom) {
+function render (vdom) {
   let props = vdom.props
   let hostCofig = {
     data: {
@@ -55,7 +55,7 @@ export function render (vdom) {
 function diff (prevObj, nextObj) {
   // Largely inspired by:
   // * https://github.com/Tencent/westore/blob/master/packages/westore/utils/diff.js
-  
+
   viewLevel = 0
   handlerId = 0
   const out = {}
@@ -159,7 +159,7 @@ function wireVnode (vnode) {
   return vnode.render || vnode
 }
 
-export function h (type, props) {
+function h (type, props) {
   let rest = []
   let children = []
   let length = arguments.length
@@ -190,3 +190,7 @@ export function h (type, props) {
     props: { ...props, children }
   }
 }
+
+const api = wx || my || tt || swan
+
+export { h, render, api }

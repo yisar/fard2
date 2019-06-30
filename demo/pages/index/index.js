@@ -1,5 +1,5 @@
 import { useState } from 'fre'
-import { render, h } from '../../fard'
+import { h, render, api } from '../../fard'
 
 function App () {
   return h(
@@ -28,7 +28,13 @@ function Counter ({ msg }) {
       'button',
       {
         class: 'button',
-        onClick: () => setCount(count + 1)
+        onClick: () => {
+          setCount(count + 1)
+          api.navigateTo({
+            url: '../user/user?name=jack',
+            class: 'link'
+          })
+        }
       },
       '+'
     ),
