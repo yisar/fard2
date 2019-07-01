@@ -128,6 +128,8 @@ fard 之所以称之为新思路，是因为它不同于其他编译型框架，
 
 另外，fard 还在 setData 之前做了一层 diff 处理，性能靠谱
 
+这里有一篇详细的文章：[fard：fre 转小程序的新思路](https://zhuanlan.zhihu.com/p/70363354)
+
 ### shortscreen
 
 <img src="https://ae01.alicdn.com/kf/HTB1hwrVdfWG3KVjSZFP5jXaiXXaZ.gif" width="300px"/>
