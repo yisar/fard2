@@ -175,6 +175,8 @@ function h (type, props) {
       children.push(vnode)
     }
   }
+  
+  props = props || {}
 
   if (typeof children[0] === 'string' || typeof children[0] === 'number') {
     props.nodeValue = children[0]
