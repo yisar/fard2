@@ -1,12 +1,13 @@
 <p align="center"><img src="https://ae01.alicdn.com/kf/HTB1gg8cc8aE3KVjSZLeq6xsSFXaQ.jpg" alt="fard logo" width="200px"></p>
 
-# fard [![NPM version](https://img.shields.io/npm/v/fard.svg?style=flat-square)](https://npmjs.com/package/fard) [![NPM downloads](https://img.shields.io/npm/dt/fard.svg?style=flat-square)](https://npmjs.com/package/fard)  [![QQ](https://img.shields.io/badge/qq.group-813783512-ff69b4.svg?maxAge=2592000&style=flat-square)](https://jq.qq.com/?_wv=1027&k=5Zyggbc)
+# fard [![NPM version](https://img.shields.io/npm/v/fard.svg?style=flat-square)](https://npmjs.com/package/fard) [![NPM downloads](https://img.shields.io/npm/dt/fard.svg?style=flat-square)](https://npmjs.com/package/fard) [![QQ](https://img.shields.io/badge/qq.group-813783512-ff69b4.svg?maxAge=2592000&style=flat-square)](https://jq.qq.com/?_wv=1027&k=5Zyggbc)
 
 :snowman: [fre](https://github.com/132yse/fre) 转小程序的新思路 ♂ learn once, write anywhere.
 
 > 工作日只处理 issue，节假日迭代~
 
 ### Use
+
 ```js
 import { useState } from 'fre'
 import { h, render } from 'fard'
@@ -27,7 +28,7 @@ render(<App />)
 
 以上，由于小程序不支持 babel 和 stylus，所以仍然需要借助 webpack
 
-完整的 demo 用例在这里：
+完整的 demo 用例在这里：[webpack-demo](https://github.com/132yse/fard/tree/master/demo/webpack)
 
 ### hooks
 
@@ -35,18 +36,19 @@ render(<App />)
 
 hooks 相关行为都发生在 fre 层，和小程序无关，不做赘述，请移步：[fre readme](https://github.com/132yse/fre)
 
-### api
+### api & context
 
 fard 提供 api 对象，用来抹平各个端的差异
 
 ```js
-import { h, render, api } from 'fard'
+import { h, render, api, context } from 'fard'
 
 function App() {
   const toJack = () => {
     api.navigateTo({
-      url: '../user/user?name=jack'
+      url: '../user/user?name=jack',
     })
+    console.log(context)
   }
   return (
     <view>
@@ -57,7 +59,10 @@ function App() {
 
 render(<App />)
 ```
+
 如上，api 等同于 wx、my、tt、swan，会根据环境自行更换命名空间
+
+context 是 this 实例
 
 ### Lifecycle
 
