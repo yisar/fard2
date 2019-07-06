@@ -4,10 +4,15 @@ class FardWebpackPlugin {
     this.viewLevel = viewLevel
     this.ignoreElements = ignoreElements
   }
-  createSource () {
+  createWxml(){
+    return `
+<import src="../../bridge.wxml"/>
+<template is="{{vdom.name}}" wx:if="{{vdom.name}}" data="{{...vdom}}"/>
+`
+  }
+  createBridgeWxml () {
     let viewStr = ''
-    let staticStr =
-      `
+    let staticStr =`
 <template name="text">
   <text class="{{props.class}}">{{props.nodeValue}}</text>
 </template>
@@ -54,10 +59,18 @@ class FardWebpackPlugin {
 
   apply (compiler) {
     compiler.hooks.emit.tapAsync('FardWebpackPlugin', (compilation, cb) => {
+      // 生成 bridge.wxml
       compilation.assets[this.filename] = {
-        source: () => this.createSource(),
+        source: () => this.createBridgeWxml(),
         size: () => 1
       }
+      //生成普通的 wxml
+      compilation.chunks.forEach((item) => {
+        compilation.assets[`${item.name}.wxml`] = {
+          source: () => this.createBridgeWxml(),
+          size: () => 1,
+        };
+      });
       cb()
     })
   }
