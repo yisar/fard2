@@ -1,2 +1,4 @@
 /node_modules/
 packages/**/node_modules/
+demo/**/node_modules/
+demo/**/miniprogram_npm/
