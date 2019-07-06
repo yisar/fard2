@@ -6,10 +6,10 @@ const FUNCTIONTYPE = '[object Function]'
 const handlerMap = {}
 let viewLevel = 0
 let handlerId = 0
-export let context = null
+let context = null
 let oldVdom = null
 
-options.end = true //开启跨端
+options.end = true // 开启跨端
 options.commitWork = fiber => {
   let { type, props } = fiber.child.child
   let vdom = { type, props }
@@ -187,7 +187,7 @@ function h (type, props) {
       children.push(vnode)
     }
   }
-  
+
   props = props || {}
 
   if (typeof children[0] === 'string' || typeof children[0] === 'number') {
@@ -207,4 +207,4 @@ function h (type, props) {
 
 const api = wx || my || tt || swan
 
-export { h, render, api }
+export { h, render, api, context }
