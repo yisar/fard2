@@ -6,25 +6,37 @@ const FUNCTIONTYPE = '[object Function]'
 const handlerMap = {}
 let viewLevel = 0
 let handlerId = 0
-let that = null
+let context = null
 let oldVdom = null
 
-options.web = false
+options.end = true // 开启跨端
 options.commitWork = fiber => {
   let { type, props } = fiber.child.child
   let vdom = { type, props }
 
   const diffRes = diff(oldVdom, vdom)
 
-  // console.log(vdom)
+  const update = () => {
+    return new Promise((resolve, reject) => {
+      if (!Object.keys(diffRes).length) {
+        resolve(null)
+        return
+      }
+      context.setData(diffRes, () => {
+        resolve(diffRes)
+      })
+    })
+  }
 
-  if (oldVdom) {
-    that.setData(diffRes)
+  if (!oldVdom) {
+    context.setData({ vdom })
   } else {
-    that.setData({ vdom })
+    update().then(diff => {
+      context.setData(diff)
+    })
   }
   for (let k in handlerMap) {
-    that[k] = handlerMap[k]
+    context[k] = handlerMap[k]
   }
   oldVdom = vdom
 }
@@ -36,7 +48,7 @@ function render (vdom) {
       vdom: {}
     },
     onLoad () {
-      that = this
+      context = this
       props.onLoad && props.onLoad()
       scheduleWork({
         tag: 2,
@@ -175,7 +187,7 @@ function h (type, props) {
       children.push(vnode)
     }
   }
-  
+
   props = props || {}
 
   if (typeof children[0] === 'string' || typeof children[0] === 'number') {
@@ -195,4 +207,4 @@ function h (type, props) {
 
 const api = wx || my || tt || swan
 
-export { h, render, api }
+export { h, render, api, context }

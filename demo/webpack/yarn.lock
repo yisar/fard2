@@ -1842,15 +1842,15 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-fard-webpack-plugin@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/fard-webpack-plugin/-/fard-webpack-plugin-0.0.3.tgz#56d3a0384cb51ce54f1b627ccd8bfc35c93633dd"
-  integrity sha512-BG+w//YWR92Z2hQ8YXFuzF1LHoxJ6IlW54H8SMKhwl8S3JpRds6wjRE2u0t6hpeSDvIS510fam4lba4Pw/8HRw==
+fard-webpack-plugin@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/fard-webpack-plugin/-/fard-webpack-plugin-0.0.4.tgz#8ec61036a6b353040a6f45f0a08c8a5a0498494c"
+  integrity sha512-bmAse10PnhrwrFXogpTU/4KgpMuuE6BK5Ab4/tcGMCfw+wd1E/tjtYxpqD3D7J4l/skNAEz/tiCk14xVPFO9Xg==
 
-fard@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/fard/-/fard-0.0.7.tgz#b6e5cff26313c9c9c28a93d78e548c8c12e7930e"
-  integrity sha512-6Tk7PEtxW3flH4RfhNWvszlH/nsQD1gfUXuEKMQknmq27ackC1V2w4sN9aOEmKGSHTtou1FphebRPjfe18TWOA==
+fard@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.npmjs.org/fard/-/fard-0.0.9.tgz#718c39ae6ae143ef233950eef0a0457b8fb7f198"
+  integrity sha512-o7NjzIFLAFKzasixWyUPA+csDeoQLBOWXoF1pYVnIulw4iy1oSbJgVbPGtLN7Pul7J4GizJGIuPL2pwpVaU4qw==
 
 fast-deep-equal@^2.0.1:
   version "2.0.1"
@@ -1923,10 +1923,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-fre@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/fre/-/fre-1.4.5.tgz#b8758982f36b9eef8917bed3b027569ad4beb85e"
-  integrity sha512-NmR+BoOSmnhE2/KIYzkybnVsfDrCLuwyw3L9UQZdGrtOjAro7D/Tro7H0pWGufeA2t2NrkUFoE2dKCCfKWoZLA==
+fre@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.npmjs.org/fre/-/fre-1.4.6.tgz#88a713c0082c6dad73baf21902e82e42391935e3"
+  integrity sha512-/giNoFhLaQCVtMbvOGZQyCSsjgKDgBY3SBjmAO8kFnz0a49awMkjn8OLEzQoz4lacPGAmGd5LcbYPnckJR0xCg==
 
 from2@^2.1.0:
   version "2.3.0"

@@ -7,17 +7,12 @@
 > 工作日只处理 issue，节假日迭代~
 
 ### Use
-
-```xml
-<import src="../../bridge.wxml"/> <!--brideg.wxml 由 fard-webpack-plugin 构建-->
-<template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}"/>
-```
-
 ```js
 import { useState } from 'fre'
 import { h, render } from 'fard'
+import './index.styl'
 
-function Counter() {
+function App() {
   const [count, setCount] = useState(0)
   return (
     <view>
@@ -27,12 +22,12 @@ function Counter() {
   )
 }
 
-render(<Counter />)
+render(<App />)
 ```
 
-以上，改造了 render 和 h 方法，其中 h 方法无需关心
+以上，由于小程序不支持 babel 和 stylus，所以仍然需要借助 webpack
 
-由于非 web 环境，不存在 dom ，所以 render 不需要第二个参数
+完整的 demo 用例在这里：
 
 ### hooks
 
@@ -82,8 +77,6 @@ render(
 注意，只有根组件和原生组件拥有生命周期，而内置的 fre 组件，请使用 `useEffect`
 
 ### fard-webpack-plugin
-
-fard 原理上是无需编译的，但是小程序不支持 babel 不支持 stylus ，最终还是需要 webpack 打包
 
 借助 webpack，还可以顺便做一些构建的工作，如 `生成 template bridge`、`复制小程序的配置文件`
 
