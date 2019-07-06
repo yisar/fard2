@@ -6,13 +6,14 @@
 	},
 	"setting": {
 		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
+		"es6": false,
+		"postcss": false,
 		"minified": true,
 		"newFeature": true,
+		"nodeModules": false,
 		"autoAudits": false,
 		"checkInvalidKey": true,
-		"nodeModules": true
+		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
