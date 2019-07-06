@@ -64,19 +64,31 @@ render(<App />)
 
 context 是 this 实例
 
-### Lifecycle
+### options
 
-由于 render 一次相当于生成一个 Page，所以支持 Page 的生命周期，它通过根组件的 props 进行传递
+有时候，我们需要自定义一些方法，比如生命周期，和小程序的默认事件
+
+此时需要用到 render 的第二个参数
 
 ```js
-const onLoad = () => console.log('onLoad……')
-const onShow = () => console.log('onShow……')
-const onReady = () => console.log('onReady……')
-const onHide = () => console.log('onHide……')
+const options = {
+  onReady() {
+    //生命周期
+    console.log('onReady……')
+  },
+  onShareAppMessage(res) {
+    //微信自带的方法
+    return {
+      title: '转发',
+      path: '/pages/index/index',
+      success(res) {
+        console.log('成功', res)
+      },
+    }
+  },
+}
 
-render(
-  <App onLoad={onLoad} onShow={onShow} onReady={onReady} onHide={onHide} />
-)
+render(<App />, options)
 ```
 
 注意，只有根组件和原生组件拥有生命周期，而内置的 fre 组件，请使用 `useEffect`
@@ -94,9 +106,6 @@ plugins: [
   new FardWebpackPlugin({
     filename: 'bridge.wxml', //事先生成的 bridge template
     viewLevel: 10, // view 标签嵌套的层级数
-    ignoreElements: {
-      'my-component': ['name', 'msg'],
-    }, //设置忽略元素，渲染时会将其认为是原生组件而不是 fre 组件
   }),
 ]
 ```
