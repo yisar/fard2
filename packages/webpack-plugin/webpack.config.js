@@ -13,10 +13,7 @@ module.exports = {
   plugins: [
     new FardWebpackPlugin({
       filename: 'bridge.wxml',
-      viewLevel: 10,
-      ignoreElements: {
-        'my-component': ['text']
-      }
+      viewLevel: 10
     })
   ]
 }
