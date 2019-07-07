@@ -32,7 +32,9 @@ module.exports = {
   },
 
   plugins: [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].wxss'
+    }),
 
     new CopyWebpackPlugin([
       {
