@@ -108,10 +108,7 @@ render(<App />, options)
 const FardWebpackPlugin = require('fard-webpack-plugin')
 
 plugins: [
-  new FardWebpackPlugin({
-    filename: 'bridge.wxml', //事先生成的 bridge template
-    viewLevel: 10, // view 标签嵌套的层级数
-  }),
+  new FardWebpackPlugin(),
 ]
 ```
 
