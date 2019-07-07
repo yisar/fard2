@@ -22,10 +22,23 @@ class FardWebpackPlugin {
     const bridgeJs = `
 Component({
   properties: {
-    vdom:{
-      type:Object,
-      value:{}
+    vdom: {
+      type: Object,
+      value: {}
     }
+  },
+  observers: {
+    'vdom.props.**': function () {
+      const props = this.data.vdom.props
+      for (let k in props) {
+        if (typeof props[k] === 'function') {
+          this[k] = props[k]
+        }
+      }
+    },
+  },
+  options: {
+    addGlobalClass: true
   }
 })
     `
@@ -62,14 +75,14 @@ Component({
   createBridgeWxml () {
     return `
 <block wx:if="{{vdom.type === 'view'}}">
-  <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onClick}}">
+  <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick}}">
     {{vdom.props.nodeValue}}
     <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
   </view>
 </block>
 
 <block wx:elif="{{vdom.type === 'text'}}">
-  <text class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onClick}}">
+  <text class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick}}">
     {{vdom.props.nodeValue}}
     <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
   </text>
@@ -77,7 +90,7 @@ Component({
 
 
 <block wx:elif="{{vdom.type === 'button'}}">
-  <button class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onClick}}">
+  <button class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick}}">
     {{vdom.props.nodeValue}}
   </button>
 </block>
@@ -89,6 +102,7 @@ Component({
 <block wx:elif="{{vdom.name === 'component'}}">
   <fard vdom="{{vdom.render}}" />
 </block>
+    
     `
   }
 }

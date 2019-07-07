@@ -1,5 +1,3 @@
-const isON = (item) => item[0] === 'o' && item[1] === 'n'
-
 Component({
   properties: {
     vdom: {

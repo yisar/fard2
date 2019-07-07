@@ -1,7 +1,4 @@
-import {
-  options,
-  scheduleWork
-} from 'fre'
+import { options, scheduleWork } from 'fre'
 
 const ARRAYTYPE = '[object Array]'
 const OBJECTTYPE = '[object Object]'
@@ -10,10 +7,7 @@ let oldVdom = null
 
 options.end = true
 options.commitWork = fiber => {
-  let {
-    type,
-    props
-  } = fiber.child.child
+  let { type, props } = fiber.child.child
   let vdom = {
     type,
     props
@@ -45,12 +39,12 @@ options.commitWork = fiber => {
   oldVdom = vdom
 }
 
-function render(vdom, options) {
+function render (vdom, options) {
   let hostCofig = {
     data: {
       vdom: {}
     },
-    onLoad() {
+    onLoad () {
       context = this
       scheduleWork({
         tag: 2,
@@ -60,12 +54,10 @@ function render(vdom, options) {
       })
     }
   }
-  Page({ ...options,
-    ...hostCofig
-  })
+  Page({ ...options, ...hostCofig })
 }
 
-function diff(prevObj, nextObj) {
+function diff (prevObj, nextObj) {
   // Largely inspired by:
   // * https://github.com/Tencent/westore/blob/master/packages/westore/utils/diff.js
   const out = {}
@@ -73,7 +65,7 @@ function diff(prevObj, nextObj) {
   return out
 }
 
-function idiff(prev, next, path, out) {
+function idiff (prev, next, path, out) {
   if (prev === next) return
 
   if (type(next) == OBJECTTYPE) {
@@ -139,19 +131,19 @@ function idiff(prev, next, path, out) {
   }
 }
 
-function setOut(out, key, value) {
+function setOut (out, key, value) {
   out['vdom' + key] = value
 }
 
-function type(obj) {
+function type (obj) {
   return Object.prototype.toString.call(obj)
 }
 
-function wireVnode(vnode) {
+function wireVnode (vnode) {
   return vnode.render || vnode
 }
 
-function h(type, props) {
+function h (type, props) {
   let rest = []
   let children = []
   let length = arguments.length
@@ -181,17 +173,10 @@ function h(type, props) {
     type,
     name: isFn ? 'component' : type,
     render: isFn ? type(props) : null,
-    props: { ...props,
-      children
-    }
+    props: { ...props, children }
   }
 }
 
 const api = wx || my || tt || swan
 
-export {
-  h,
-  render,
-  api,
-  context
-}
+export { h, render, api, context }

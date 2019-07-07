@@ -2,17 +2,16 @@ import { options, scheduleWork } from 'fre'
 
 const ARRAYTYPE = '[object Array]'
 const OBJECTTYPE = '[object Object]'
-const FUNCTIONTYPE = '[object Function]'
-const handlerMap = {}
-let viewLevel = 0
-let handlerId = 0
 let context = null
 let oldVdom = null
 
-options.end = true // 开启跨端
+options.end = true
 options.commitWork = fiber => {
   let { type, props } = fiber.child.child
-  let vdom = { type, props }
+  let vdom = {
+    type,
+    props
+  }
 
   const diffRes = diff(oldVdom, vdom)
 
@@ -29,14 +28,13 @@ options.commitWork = fiber => {
   }
 
   if (!oldVdom) {
-    context.setData({ vdom })
+    context.setData({
+      vdom
+    })
   } else {
     update().then(diff => {
       context.setData(diff)
     })
-  }
-  for (let k in handlerMap) {
-    context[k] = handlerMap[k]
   }
   oldVdom = vdom
 }
@@ -48,7 +46,6 @@ function render (vdom, options) {
     },
     onLoad () {
       context = this
-      options.onLoad && options.onLoad()
       scheduleWork({
         tag: 2,
         props: {
@@ -63,9 +60,6 @@ function render (vdom, options) {
 function diff (prevObj, nextObj) {
   // Largely inspired by:
   // * https://github.com/Tencent/westore/blob/master/packages/westore/utils/diff.js
-
-  viewLevel = 0
-  handlerId = 0
   const out = {}
   idiff(prevObj, nextObj, '', out)
   return out
@@ -103,10 +97,8 @@ function idiff (prev, next, path, out) {
         } else {
           for (let name in nextValue) {
             if (name[0] === 'o' && name[1] === 'n') {
-              let key = name.toLowerCase() + handlerId
-              handlerMap[key] = nextValue[name]
-              nextValue[name] = key
-              handlerId++
+              let key = name.toLowerCase()
+              nextValue[key] = name
             }
             idiff(
               prevValue && prevValue[name],
@@ -122,10 +114,6 @@ function idiff (prev, next, path, out) {
     if (prev && type(prev) != ARRAYTYPE) {
       setOut(out, path, next)
     } else {
-      const isContain = item => item.type == 'view' || item.render
-      if (next.length && next.some(isContain)) {
-        viewLevel++
-      }
       for (let index in next) {
         let last = prev && prev[index]
         next[index] = wireVnode(next[index])
@@ -144,9 +132,7 @@ function idiff (prev, next, path, out) {
 }
 
 function setOut (out, key, value) {
-  if (type(value) != FUNCTIONTYPE) {
-    out['vdom' + key] = value
-  }
+  out['vdom' + key] = value
 }
 
 function type (obj) {
@@ -154,16 +140,6 @@ function type (obj) {
 }
 
 function wireVnode (vnode) {
-  if (type(vnode.type) == FUNCTIONTYPE) {
-    if (vnode.render.type === 'view') {
-      vnode.render.name = 'view' + viewLevel
-    }
-  } else {
-    if (vnode.type == 'view') {
-      vnode.type = 'view' + viewLevel
-    }
-    vnode.name = vnode.type
-  }
   return vnode.render || vnode
 }
 
