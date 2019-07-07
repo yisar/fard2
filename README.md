@@ -6,6 +6,11 @@
 
 > 工作日只处理 issue，节假日迭代~
 
+| Package                                               | Version                                                      | About          |
+| ----------------------------------------------------- | ------------------------------------------------------------ | -------------- |
+| [`Fard`](.)                                           | ![npm](https://img.shields.io/npm/v/fard.svg)                | fard core      |
+| [`fard-webpack-plugin`](./tree/master/webpack-plugin) | ![npm](https://img.shields.io/npm/v/fard-webpack-plugin.svg) | webpack plugin |
+
 ### Use
 
 ```js
@@ -129,11 +134,11 @@ fard 之所以称之为新思路，是因为它不同于其他编译型框架，
 
 如图：
 
-![](http://tva1.sinaimg.cn/large/0060lm7Tly1g4jfdp3i3sj30d00mkwh0.jpg)
+![](https://ae01.alicdn.com/kf/HTB1hkZ2Xlv0gK0jSZKbq6zK2FXax.jpg)
 
-它通过 template bridge 来桥接 fre 和小程序的 vdom，是在小程序里跑 fre 而不是将 fre 编译成小程序
+它通过 bridge 来桥接 fre 和小程序的 vdom，是在小程序里跑 fre 而不是将 fre 编译成小程序
 
-另外，fard 还在 setData 之前做了一层 diff 处理，性能靠谱
+另外，fard 还在 setData 之前做了一层 diff/防抖/压缩 三连，性能靠谱
 
 这里有一篇详细的文章：[fard：fre 转小程序的新思路](https://zhuanlan.zhihu.com/p/70363354)
 
