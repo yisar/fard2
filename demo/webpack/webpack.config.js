@@ -1,7 +1,7 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const FardWebpackPlugin = require('../../packages/webpack-plugin/index')
+const FardWebpackPlugin = require('../../webpack-plugin/index')
 
 module.exports = {
   entry: {
