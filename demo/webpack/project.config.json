@@ -6,17 +6,17 @@
 	},
 	"setting": {
 		"urlCheck": true,
-		"es6": false,
+		"es6": true,
 		"postcss": false,
 		"minified": true,
 		"newFeature": true,
 		"nodeModules": false,
 		"autoAudits": false,
-		"checkInvalidKey": true,
-		"uglifyFileName": true
+		"uglifyFileName": true,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.7.3",
 	"appid": "wxf90ca3e12cfc42ab",
 	"projectname": "sports-fard",
 	"debugOptions": {
