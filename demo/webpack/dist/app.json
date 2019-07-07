@@ -3,10 +3,10 @@
       "pages/index/index"
     ],
     "window": {
-      "backgroundTextStyle": "dark",
-      "navigationBarBackgroundColor": "#001935",
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#fff",
       "navigationBarTitleText": "fuck me",
-      "navigationBarTextStyle": "white"
+      "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json"
   }

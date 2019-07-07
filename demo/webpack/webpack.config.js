@@ -1,7 +1,7 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const FardWebpackPlugin = require('fard-webpack-plugin')
+const FardWebpackPlugin = require('../../packages/webpack-plugin/index')
 
 module.exports = {
   entry: {
@@ -45,10 +45,7 @@ module.exports = {
       }
     ]),
 
-    new FardWebpackPlugin({
-      filename: 'bridge.wxml',
-      viewLevel: 20
-    })
+    new FardWebpackPlugin()
   ],
   mode: 'production'
 }
