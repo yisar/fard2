@@ -1,6 +1,6 @@
 
 <template name="text">
-  <text class="{{props.class}}">{{props.nodeValue}}</text>
+  <text class="{{props.class||props.className}}">{{props.nodeValue}}</text>
 </template>
 <template name="button">
   <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.nodeValue}}</button>
@@ -175,4 +175,4 @@
     </block>
   </view>
 </template>
-
+

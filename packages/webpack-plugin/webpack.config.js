@@ -11,9 +11,6 @@ module.exports = {
     filename: 'main.js'
   },
   plugins: [
-    new FardWebpackPlugin({
-      filename: 'bridge.wxml',
-      viewLevel: 10
-    })
+    new FardWebpackPlugin()
   ]
 }

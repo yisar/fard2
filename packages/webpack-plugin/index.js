@@ -1,66 +1,95 @@
 class FardWebpackPlugin {
-  constructor ({ filename = 'base.wxml', viewLevel = 5, ignoreElements }) {
-    this.filename = filename
-    this.viewLevel = viewLevel
-    this.ignoreElements = ignoreElements
-  }
-  createWxml(){
-    return `
-<import src="../../bridge.wxml"/>
-<template is="{{vdom.name}}" wx:if="{{vdom.name}}" data="{{...vdom}}"/>
-`
-  }
-  createBridgeWxml () {
-    let viewStr = ''
-    let staticStr =`
-<template name="text">
-  <text class="{{props.class}}">{{props.nodeValue}}</text>
-</template>
-<template name="button">
-  <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.nodeValue}}</button>
-</template>
-<template name="image">
-  <image class="{{props.class}}" src="{{props.src}}"></image>
-</template>
-<template name="navigator">
-  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
-</template>
-<template name="component">
-  <template is="{{render.name}}" data="{{...render}}"></template>
-</template>
-    ` + '\n\r'
-
-    for (let i = 0; i < this.viewLevel; i++) {
-      viewStr +=
-        `
-<template name="view${i}">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.name}}" data="{{...item}}"></template>
-    </block>
-  </view>
-</template>` + '\n\r'
-    }
-
-    return staticStr + viewStr
+  constructor () {
   }
 
   apply (compiler) {
+    const wxml = `<fard vdom="{{vdom}}" />`
+    const json = `
+{
+  "usingComponents": {
+    "fard":"/bridge/bridge"
+  }
+}`
+
+    const bridgeJson = `
+{
+  "component": true,
+  "usingComponents": {
+    "fard": "/bridge/bridge"
+  }
+}
+    `
+    const bridgeJs = `
+Component({
+  properties: {
+    vdom:{
+      type:Object,
+      value:{}
+    }
+  }
+})
+    `
     compiler.hooks.emit.tapAsync('FardWebpackPlugin', (compilation, cb) => {
-      // 生成 bridge.wxml
-      compilation.assets[this.filename] = {
-        source: () => this.createBridgeWxml(),
-        size: () => 1
+      const bridgeWxml = this.createBridgeWxml()
+      compilation.assets['bridge/bridge.wxml'] = {
+        source: () => bridgeWxml,
+        size: () => bridgeWxml.length
       }
-      //生成普通的 wxml
+      compilation.assets['bridge/bridge.json'] = {
+        source: () => bridgeJson,
+        size: () => bridgeJson.length
+      }
+
+      compilation.assets['bridge/bridge.js'] = {
+        source: () => bridgeJs,
+        size: () => bridgeJs.length
+      }
+      //批量生成 wxml和 json
       compilation.chunks.forEach((item) => {
         compilation.assets[`${item.name}.wxml`] = {
-          source: () => this.createWxml(),
-          size: () => 1,
-        };
-      });
+          source: () => wxml,
+          size: () => wxml.length,
+        }
+        compilation.assets[`${item.name}.json`] = {
+          source: () => json,
+          size: () => json.length,
+        }
+      })
       cb()
     })
+  }
+
+  createBridgeWxml () {
+    return `
+<block wx:if="{{vdom.type === 'view'}}">
+  <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onClick}}">
+    {{vdom.props.nodeValue}}
+    <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
+  </view>
+</block>
+
+<block wx:elif="{{vdom.type === 'text'}}">
+  <text class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onClick}}">
+    {{vdom.props.nodeValue}}
+    <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
+  </text>
+</block>
+
+
+<block wx:elif="{{vdom.type === 'button'}}">
+  <button class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onClick}}">
+    {{vdom.props.nodeValue}}
+  </button>
+</block>
+
+<block wx:elif="{{vdom.type === 'image'}}">
+  <image class="{{vdom.props.class||vdom.props.className}}" src="{{vdom.props.src}}" />
+</block>
+
+<block wx:elif="{{vdom.name === 'component'}}">
+  <fard vdom="{{vdom.render}}" />
+</block>
+    `
   }
 }
 
