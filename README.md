@@ -141,5 +141,5 @@ fard 之所以称之为新思路，是因为它不同于其他编译型框架，
 ### contributors
 
 <a href="https://github.com/132yse/fard/graphs/contributors">
-    <img src="https://opencollective.com/132yse/contributors.svg?width=1000&button=false"/>
+    <img src="https://opencollective.com/132yse/fard/contributors.svg?width=1000&button=false"/>
 </a>
