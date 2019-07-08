@@ -8,7 +8,7 @@
 
 | Package                                               | Version                                                      | About          |
 | ----------------------------------------------------- | ------------------------------------------------------------ | -------------- |
-| [`Fard`](.)                                           | ![npm](https://img.shields.io/npm/v/fard.svg)                | fard core      |
+| [`Fard`](./)                                           | ![npm](https://img.shields.io/npm/v/fard.svg)                | fard core      |
 | [`fard-webpack-plugin`](./tree/master/webpack-plugin) | ![npm](https://img.shields.io/npm/v/fard-webpack-plugin.svg) | webpack plugin |
 
 ### Use
