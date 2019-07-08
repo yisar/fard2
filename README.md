@@ -158,3 +158,7 @@ For example run these commands if you'd like to run fard-demo with Webpack:
 cd packages/demo-webpack
 yarn start
 ```
+
+## Contributors
+
+| [![](https://avatars0.githubusercontent.com/u/12951461?s=300&v=4)](https://github.com/132yse)                |     [![](https://avatars2.githubusercontent.com/u/1812118?s=300&v=4)](https://github.com/malash)         | [![](https://avatars2.githubusercontent.com/u/622789?s=300&v=4)](https://github.com/Jimexist)    |
