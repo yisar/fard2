@@ -17,7 +17,7 @@ Component({
     },
   },
   options: {
-    addGlobalClass: true
+    styleIsolation: 'shared'
   }
 })
     
