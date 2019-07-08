@@ -69,14 +69,14 @@ render(<App />)
 
 context 是 this 实例
 
-### options
+### setup
 
 有时候，我们需要自定义一些方法，比如生命周期，和小程序的默认事件
 
 此时需要用到 render 的第二个参数
 
 ```js
-const options = {
+const setup = {
   onReady() {
     //生命周期
     console.log('onReady……')
@@ -93,7 +93,7 @@ const options = {
   },
 }
 
-render(<App />, options)
+render(<App />, setup)
 ```
 
 注意，只有根组件和原生组件拥有生命周期，而内置的 fre 组件，请使用 `useEffect`
@@ -119,8 +119,7 @@ plugins: [
 我们只需要在我们每个 page 的 wxml 引用它即可：
 
 ```xml
-<import src="../../bridge.wxml"/>
-<template is="{{vdom.name}}" data="{{...vdom}}" wx:if="{{vdom.name}}"/>
+<fard vdom="{{vdom}}">
 ```
 
 写死的，不用修改
