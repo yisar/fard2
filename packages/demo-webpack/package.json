@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "fard": "^0.1.0",
-    "fard-webpack-plugin": "^0.1.1",
+    "fard-webpack-plugin": "^0.1.2",
     "fre": "^1.4.6"
   },
   "private": true
