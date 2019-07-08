@@ -161,4 +161,6 @@ yarn start
 
 ## Contributors
 
-| [![](https://avatars0.githubusercontent.com/u/12951461?s=300&v=4)](https://github.com/132yse)                |     [![](https://avatars2.githubusercontent.com/u/1812118?s=300&v=4)](https://github.com/malash)         | [![](https://avatars2.githubusercontent.com/u/622789?s=300&v=4)](https://github.com/Jimexist)    |
+<a href="https://github.com/132yse" target="_blank"><img width="60px" src="https://avatars0.githubusercontent.com/u/12951461?s=300&v=4"></a>
+<a href="https://github.com/malash" target="_blank"><img width="60px" src="https://avatars2.githubusercontent.com/u/1812118?s=300&v=4"></a>
+<a href="https://github.com/Jimexist" target="_blank"><img width="60px" src="https://avatars2.githubusercontent.com/u/622789?s=300&v=4"></a>
