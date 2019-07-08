@@ -7,7 +7,7 @@ class FardWebpackPlugin {
     const json = `
 {
   "usingComponents": {
-    "fard":"/bridge/bridge"
+    "fard":"/block/block"
   }
 }`
 
@@ -15,7 +15,7 @@ class FardWebpackPlugin {
 {
   "component": true,
   "usingComponents": {
-    "fard": "/bridge/bridge"
+    "fard": "/block/block"
   }
 }
     `
@@ -44,16 +44,16 @@ Component({
     `
     compiler.hooks.emit.tapAsync('FardWebpackPlugin', (compilation, cb) => {
       const bridgeWxml = this.createBridgeWxml()
-      compilation.assets['bridge/bridge.wxml'] = {
+      compilation.assets['block/block.wxml'] = {
         source: () => bridgeWxml,
         size: () => bridgeWxml.length
       }
-      compilation.assets['bridge/bridge.json'] = {
+      compilation.assets['block/block.json'] = {
         source: () => bridgeJson,
         size: () => bridgeJson.length
       }
 
-      compilation.assets['bridge/bridge.js'] = {
+      compilation.assets['block/block.js'] = {
         source: () => bridgeJs,
         size: () => bridgeJs.length
       }
@@ -75,14 +75,14 @@ Component({
   createBridgeWxml () {
     return `
 <block wx:if="{{vdom.type === 'view'}}">
-  <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick}}">
+  <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||""}}">
     {{vdom.props.nodeValue}}
     <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
   </view>
 </block>
 
 <block wx:elif="{{vdom.type === 'text'}}">
-  <text class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick}}">
+  <text class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||""}}">
     {{vdom.props.nodeValue}}
     <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
   </text>
@@ -90,7 +90,7 @@ Component({
 
 
 <block wx:elif="{{vdom.type === 'button'}}">
-  <button class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick}}">
+  <button class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||""}}">
     {{vdom.props.nodeValue}}
   </button>
 </block>

@@ -1,6 +1,6 @@
 
 {
   "usingComponents": {
-    "fard":"/bridge/bridge"
+    "fard":"/block/block"
   }
 }
