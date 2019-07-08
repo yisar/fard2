@@ -11,7 +11,7 @@
 | [`Fard`](https://github.com/132yse/fard)                                           | ![npm](https://img.shields.io/npm/v/fard.svg)                | fard core      |
 | [`fard-webpack-plugin`](https://github.com/132yse/fard/tree/master/webpack-plugin) | ![npm](https://img.shields.io/npm/v/fard-webpack-plugin.svg) | webpack plugin |
 
-### Use
+## Usage
 
 ```js
 import { useState } from 'fre'
@@ -124,7 +124,7 @@ plugins: [
 
 写死的，不用修改
 
-### 原理
+## 原理
 
 fard 之所以称之为新思路，是因为它不同于其他编译型框架，它的原理和 RN 类似，是比较好的跨端方案
 
@@ -138,7 +138,30 @@ fard 之所以称之为新思路，是因为它不同于其他编译型框架，
 
 这里有一篇详细的文章：[fard：fre 转小程序的新思路](https://zhuanlan.zhihu.com/p/70363354)
 
-### contributors
+## How to contribute
+
+Since `fard` use monorepo managed by [lerna](https://github.com/lerna/lerna) you should install `lerna` at first.
+
+```bash
+npm i -g lerna
+```
+
+Then install all dependencies:
+
+```bash
+lerna bootstrap
+```
+
+> For more details of how to use Lerna see [the official documents](https://lerna.js.org/).
+
+For example run these commands if you'd like to run fard-demo with Webpack:
+
+```bash
+cd packages/demo-webpack
+yarn build
+```
+
+## contributors
 
 <a href="https://github.com/132yse/fard/graphs/contributors">
     <img src="https://opencollective.com/132yse/contributors.svg?width=1000&button=false"/>
