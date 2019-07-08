@@ -3224,6 +3224,11 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
+fard-webpack-plugin@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/fard-webpack-plugin/-/fard-webpack-plugin-0.1.2.tgz#4d1d3fa03e363e9ddea46f0259f66115f787566d"
+  integrity sha512-LUqjf2OPFKdJRYz8nHz+4QtkgTN0U0/v44z4GdF17h/xwgc6/Uj12x/id8xmbY6yb5bnyJrzjN1wbn8s/+Q/ow==
+
 fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
