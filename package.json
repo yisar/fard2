@@ -1,12 +1,10 @@
 {
   "name": "fard",
-  "description": "<p align=\"center\"><img src=\"https://ae01.alicdn.com/kf/HTB1gg8cc8aE3KVjSZLeq6xsSFXaQ.jpg\" alt=\"fard logo\" width=\"200px\"></p>",
-  "version": "0.1.0",
-  "main": "./demo/webpack/fard.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
-  },
+  "description": "Fard",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/132yse/fard.git"
@@ -19,8 +17,6 @@
   },
   "homepage": "https://github.com/132yse/fard#readme",
   "devDependencies": {
-    "rollup": "^1.16.2",
-    "rollup-plugin-cleanup": "^3.1.1",
-    "rollup-plugin-license": "^0.9.0"
+    "lerna": "^3.15.0"
   }
 }
