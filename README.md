@@ -6,10 +6,10 @@
 
 > 工作日只处理 issue，节假日迭代~
 
-| Package                                               | Version                                                      | About          |
-| ----------------------------------------------------- | ------------------------------------------------------------ | -------------- |
-| [`Fard`](./)                                           | ![npm](https://img.shields.io/npm/v/fard.svg)                | fard core      |
-| [`fard-webpack-plugin`](./tree/master/webpack-plugin) | ![npm](https://img.shields.io/npm/v/fard-webpack-plugin.svg) | webpack plugin |
+| Package                                                                            | Version                                                      | About          |
+|------------------------------------------------------------------------------------|--------------------------------------------------------------|----------------|
+| [`Fard`](https://github.com/132yse/fard)                                           | ![npm](https://img.shields.io/npm/v/fard.svg)                | fard core      |
+| [`fard-webpack-plugin`](https://github.com/132yse/fard/tree/master/webpack-plugin) | ![npm](https://img.shields.io/npm/v/fard-webpack-plugin.svg) | webpack plugin |
 
 ### Use
 
