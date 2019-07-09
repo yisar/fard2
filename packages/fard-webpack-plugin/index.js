@@ -74,45 +74,37 @@ Component({
 
   createBridgeWxml () {
     return `
-
 <block wx:if="{{vdom.type === 'view'}}">
   <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||''}}">
     {{vdom.props.nodeValue}}
     <block wx:for="{{vdom.props.children}}" wx:key=''>
-      <fard vdom="{{item}}" wx:if="{{item.type === 'view'}}"/>
+      <fard vdom="{{item}}" wx:if="{{item.type === 'view'}}" />
       <template is="{{item.type}}" wx:elif="{{item.type !== 'view'}}" data="{{...item}}"></template>
     </block>
   </view>
 </block>
-
 <block wx:elif="{{vdom.type === 'text'}}">
   <text class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||''}}">
-    {{vdom.props.nodeValue}}
-    <fard wx:for="{{vdom.props.children}}" wx:key='' vdom="{{item}}" />
-  </text>
+      {{vdom.props.nodeValue}}
+      <fard wx:for="{{vdom.props.children}}" wx:key='' vdom="{{item}}" />
+    </text>
 </block>
-
-
 <block wx:elif="{{vdom.type === 'button'}}">
   <button class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||''}}">
     {{vdom.props.nodeValue}}
   </button>
 </block>
-
 <block wx:elif="{{vdom.type === 'image'}}">
   <image class="{{vdom.props.class||vdom.props.className}}" src="{{vdom.props.src}}" />
 </block>
-
 <block wx:elif="{{vdom.name === 'component'}}">
   <fard vdom="{{vdom.render}}" />
 </block>
-
-
 <template name="text">
-  <text class="{{props.class}}">{{props.nodeValue}}</text>
+  <text class="{{props.class}}" bindtap="{{props.onclick||''}}">{{props.nodeValue}}</text>
 </template>
 <template name="button">
-  <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.nodeValue}}</button>
+  <button class="{{props.class}}" bindtap="{{props.onclick||''}}">{{props.nodeValue}}</button>
 </template>
 <template name="image">
   <image class="{{props.class}}" src="{{props.src}}"></image>
