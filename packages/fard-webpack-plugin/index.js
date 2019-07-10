@@ -37,6 +37,16 @@ Component({
       }
     },
   },
+  lifetimes: {
+    attached() {
+      const attach = (this.data.vdom.props||{}).onAttach
+      attach && attach()
+    },
+    detached: function() {
+      const detach = (this.data.vdom.props||{}).onDetach
+      detach && detach()
+    },
+  },
   options: {
     addGlobalClass: true
   }
@@ -79,7 +89,6 @@ Component({
     {{vdom.props.nodeValue}}
     <block wx:for="{{vdom.props.children}}" wx:key=''>
       <fard vdom="{{item}}" wx:if="{{item.type === 'view'}}" />
-      <template is="{{item.type}}" wx:elif="{{item.type !== 'view'}}" data="{{...item}}"></template>
     </block>
   </view>
 </block>
@@ -100,21 +109,6 @@ Component({
 <block wx:elif="{{vdom.name === 'component'}}">
   <fard vdom="{{vdom.render}}" />
 </block>
-<template name="text">
-  <text class="{{props.class}}" bindtap="{{props.onclick||''}}">{{props.nodeValue}}</text>
-</template>
-<template name="button">
-  <button class="{{props.class}}" bindtap="{{props.onclick||''}}">{{props.nodeValue}}</button>
-</template>
-<template name="image">
-  <image class="{{props.class}}" src="{{props.src}}"></image>
-</template>
-<template name="navigator">
-  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
-</template>
-<template name="component">
-  <template is="{{render.name}}" data="{{...render}}"></template>
-</template>
     `
   }
 }
