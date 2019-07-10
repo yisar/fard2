@@ -35,8 +35,8 @@ options.commitWork = fiber => {
     update().then(diff => {
       context.setData(diff)
     })
+    oldVdom = vdom
   }
-  oldVdom = vdom
 }
 
 function render (vdom, options) {
