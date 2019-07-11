@@ -1,49 +1,26 @@
+const ejs = require('ejs');
+const fs = require('fs');
+const path = require('path');
+
+const renderTemplate = (pathname, data = {}) => {
+  const content = fs.readFileSync(path.resolve(__dirname, pathname)).toString();
+  return ejs.render(content, data);
+}
+
+
 class FardWebpackPlugin {
   constructor () {
   }
 
   apply (compiler) {
-    const wxml = `<fard vdom="{{vdom}}" />`
-    const json = `
-{
-  "usingComponents": {
-    "fard":"/block/block"
-  }
-}`
-
-    const bridgeJson = `
-{
-  "component": true,
-  "usingComponents": {
-    "fard": "/block/block"
-  }
-}
-    `
-    const bridgeJs = `
-Component({
-  properties: {
-    vdom: {
-      type: Object,
-      value: {}
-    }
-  },
-  observers: {
-    'vdom.props.**': function () {
-      const props = this.data.vdom.props
-      for (let k in props) {
-        if (typeof props[k] === 'function') {
-          this[k] = props[k]
-        }
-      }
-    },
-  },
-  options: {
-    addGlobalClass: true
-  }
-})
-    `
     compiler.hooks.emit.tapAsync('FardWebpackPlugin', (compilation, cb) => {
-      const bridgeWxml = this.createBridgeWxml()
+      const bridgeJson = renderTemplate('./templates/component/block.json.ejs');
+      const bridgeJs = renderTemplate('./templates/component/block.js.ejs');
+      const bridgeWxml = renderTemplate('./templates/component/block.wxml.ejs');
+
+      const wxml = renderTemplate('./templates/component/item.wxml.ejs');
+      const json = renderTemplate('./templates/component/item.json.ejs');
+
       compilation.assets['block/block.wxml'] = {
         source: () => bridgeWxml,
         size: () => bridgeWxml.length
@@ -70,40 +47,6 @@ Component({
       })
       cb()
     })
-  }
-
-  createBridgeWxml () {
-    return `
-<block wx:if="{{vdom.type === 'view'}}">
-  <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||''}}">
-    {{vdom.props.nodeValue}}
-    <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
-  </view>
-</block>
-
-<block wx:elif="{{vdom.type === 'text'}}">
-  <text class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||''}}">
-    {{vdom.props.nodeValue}}
-    <fard wx:for="{{vdom.props.children}}" wx:key="" vdom="{{item}}" />
-  </text>
-</block>
-
-
-<block wx:elif="{{vdom.type === 'button'}}">
-  <button class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||''}}">
-    {{vdom.props.nodeValue}}
-  </button>
-</block>
-
-<block wx:elif="{{vdom.type === 'image'}}">
-  <image class="{{vdom.props.class||vdom.props.className}}" src="{{vdom.props.src}}" />
-</block>
-
-<block wx:elif="{{vdom.name === 'component'}}">
-  <fard vdom="{{vdom.render}}" />
-</block>
-
-    `
   }
 }
 
