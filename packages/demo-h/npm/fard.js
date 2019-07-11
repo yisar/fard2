@@ -1,1 +1,0 @@
-../../../node_modules/fard/index.js

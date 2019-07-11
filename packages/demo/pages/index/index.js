@@ -5,7 +5,7 @@ import './index.styl'
 function Counter () {
   const [count, setCount] = useState(0)
   return (
-    <view>
+    <view onAttach>
       <text class='text'>{count}</text>
       <button class='btn' onClick={() => setCount(count + 1)}>
         +

@@ -1,1 +1,0 @@
-../../../node_modules/fre/dist/fre.js

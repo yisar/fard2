@@ -23,7 +23,6 @@ module.exports = {
           loader: 'babel-loader'
         }
       },
-
       {
         test: /\.styl$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']

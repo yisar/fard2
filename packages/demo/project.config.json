@@ -1,20 +1,24 @@
 {
 	"description": "项目配置文件",
+	"miniprogramRoot": "dist/",
 	"packOptions": {
 		"ignore": []
 	},
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
-		"postcss": true,
+		"postcss": false,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"nodeModules": false,
+		"autoAudits": false,
+		"uglifyFileName": true,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.1",
-	"appid": "wx0fad8c33598bbadd",
-	"projectname": "h",
+	"libVersion": "2.7.3",
+	"appid": "wxf90ca3e12cfc42ab",
+	"projectname": "demo",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

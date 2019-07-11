@@ -42,7 +42,7 @@ Component({
       const attach = (this.data.vdom.props||{}).onAttach
       attach && attach()
     },
-    detached: function() {
+    detached() {
       const detach = (this.data.vdom.props||{}).onDetach
       detach && detach()
     },
@@ -67,7 +67,6 @@ Component({
         source: () => bridgeJs,
         size: () => bridgeJs.length
       }
-      //批量生成 wxml和 json
       compilation.chunks.forEach((item) => {
         compilation.assets[`${item.name}.wxml`] = {
           source: () => wxml,
