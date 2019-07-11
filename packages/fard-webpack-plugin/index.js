@@ -76,7 +76,7 @@ class FardWebpackPlugin {
         break;
       }
       default:
-        break;
+        throw new Error('invalid bridgeType found');
     }
   }
 }

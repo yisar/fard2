@@ -1,6 +1,8 @@
 import { useState } from 'fre'
-import { h, render } from '../../fard'
+import { h, render, unstable_setBridgreType } from 'fard'
 import './index.styl'
+
+unstable_setBridgreType('template')
 
 function Counter () {
   const [count, setCount] = useState(0)
