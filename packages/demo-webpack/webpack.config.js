@@ -47,7 +47,9 @@ module.exports = {
       }
     ]),
 
-    new FardWebpackPlugin()
+    new FardWebpackPlugin({
+      bridgeType: 'template'
+    })
   ],
   mode: 'production'
 }

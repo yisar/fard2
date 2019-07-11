@@ -1,6 +1,8 @@
 import { useState } from 'fre'
-import { h, render } from '../../fard'
+import { h, render, unstable_setBridgreType } from 'fard'
 import './index.styl'
+
+unstable_setBridgreType('template')
 
 function Counter () {
   const [count, setCount] = useState(0)
@@ -9,6 +11,9 @@ function Counter () {
       <text class='text'>{count}</text>
       <button class='btn' onClick={() => setCount(count + 1)}>
         +
+      </button>
+      <button class='btn' onClick={() => setCount(count - 1)}>
+        -
       </button>
     </view>
   )

@@ -2,8 +2,12 @@ import { options, scheduleWork } from 'fre'
 
 const ARRAYTYPE = '[object Array]'
 const OBJECTTYPE = '[object Object]'
+const FUNCTIONTYPE = '[object Function]'
 let context = null
 let oldVdom = null
+let handlerId = 0;
+let handlerMap = {};
+let bridgeType = 'template';
 
 options.end = true
 options.commitWork = fiber => {
@@ -27,6 +31,7 @@ options.commitWork = fiber => {
     })
   }
 
+  console.log(vdom);
   if (!oldVdom) {
     context.setData({
       vdom
@@ -35,6 +40,11 @@ options.commitWork = fiber => {
     update().then(diff => {
       context.setData(diff)
     })
+  }
+  if (bridgeType === 'template') {
+    for (let k in handlerMap) {
+      context[k] = handlerMap[k]
+    }
   }
   oldVdom = vdom
 }
@@ -97,8 +107,16 @@ function idiff (prev, next, path, out) {
         } else {
           for (let name in nextValue) {
             if (name[0] === 'o' && name[1] === 'n') {
-              let key = name.toLowerCase()
-              nextValue[key] = name
+              if (bridgeType === 'template') {
+                let key = name.toLowerCase() + handlerId
+                // FIXME: memory leak here
+                handlerMap[key] = nextValue[name]
+                nextValue[name] = key
+                handlerId++
+              } else {
+                let key = name.toLowerCase()
+                nextValue[key] = name
+              }
             }
             idiff(
               prevValue && prevValue[name],
@@ -132,6 +150,9 @@ function idiff (prev, next, path, out) {
 }
 
 function setOut (out, key, value) {
+  if (type(value) === FUNCTIONTYPE && bridgeType === 'template') {
+    return;
+  }
   out['vdom' + key] = value
 }
 
@@ -177,6 +198,11 @@ function h (type, props) {
   }
 }
 
+// FIXME: will be removed later
+const unstable_setBridgreType = (newBridgeType) => {
+  bridgeType = newBridgeType
+};
+
 const api = wx || my || tt || swan
 
-export { h, render, api, context }
+export { h, render, api, context, unstable_setBridgreType }

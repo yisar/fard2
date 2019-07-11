@@ -1,0 +1,34 @@
+
+
+<% for (var i = 0; i < maxDepth; i++) {%>
+
+<template name="text<%= i %>">
+  <text class="{{props.class}}">{{props.nodeValue}}</text>
+</template>
+
+<template name="button<%= i %>">
+  <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.nodeValue}}</button>
+</template>
+
+<template name="image<%= i %>">
+  <image class="{{props.class}}" src="{{props.src}}"></image>
+</template>
+
+<template name="navigator<%= i %>">
+  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
+</template>
+
+<template name="component">
+  <template is="{{render.name}}" data="{{...render}}"></template>
+</template>
+
+<template name="view<%= i %>">
+  <view class="{{props.class}}">
+    <block wx:for="{{props.children}}" wx:key="">
+      <template is="{{item.type}}<%= i + 1 %>" data="{{...item }}"></template>
+    </block>
+  </view>
+</template>
+
+<% }%>
+
