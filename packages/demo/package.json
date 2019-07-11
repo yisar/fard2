@@ -1,6 +1,6 @@
 {
   "name": "fard-demo-webpack",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "![](https://ae01.alicdn.com/kf/HTB1oh4vXaL7gK0jSZFB760ZZpXaF.png)",
   "main": "index.js",
   "scripts": {
@@ -31,8 +31,8 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "fard": "^0.1.2",
-    "fard-webpack-plugin": "^0.1.2",
+    "fard": "^0.1.3",
+    "fard-webpack-plugin": "^0.1.3",
     "fre": "^1.4.6"
   },
   "private": true
