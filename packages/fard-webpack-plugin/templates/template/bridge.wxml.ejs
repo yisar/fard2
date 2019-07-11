@@ -2,31 +2,38 @@
 
 <% for (var i = 0; i < maxDepth; i++) {%>
 
+<template name="$$REMAX_CHILDREN<%= i %>">
+  <block wx:for="{{children}}" wx:key="">
+    <block wx:if="{{item.type === '$$REMAX_TYPE_TEXT'}}">{{item.text}}</block>
+    <template wx:else is="{{item.type}}<%= i + 1 %>" data="{{...item }}" />
+  </block>
+</template>
+
 <template name="text<%= i %>">
-  <text class="{{props.class}}">{{props.nodeValue}}</text>
+  <text class="{{props.className}} {{text}}">
+    <template is="$$REMAX_CHILDREN<%= i %>" data="{{ children: children }}" />
+  </text>
 </template>
 
 <template name="button<%= i %>">
-  <button class="{{props.class}}" bindtap="{{props.onClick}}">{{props.nodeValue}}</button>
+  <button class="{{props.className}}" bindtap="{{props.onClick}}">
+    <template is="$$REMAX_CHILDREN<%= i %>" data="{{ children: children }}" />
+  </button>
 </template>
 
 <template name="image<%= i %>">
-  <image class="{{props.class}}" src="{{props.src}}"></image>
+  <image class="{{props.className}}" src="{{props.src}}"></image>
 </template>
 
 <template name="navigator<%= i %>">
-  <navigator class="{{props.class}}" url="{{props.url}}">{{props.nodeValue}}</navigator>
-</template>
-
-<template name="component">
-  <template is="{{render.name}}" data="{{...render}}"></template>
+  <navigator class="{{props.className}}" url="{{props.url}}">
+    <template is="$$REMAX_CHILDREN<%= i %>" data="{{ children: children }}" />
+  </navigator>
 </template>
 
 <template name="view<%= i %>">
-  <view class="{{props.class}}">
-    <block wx:for="{{props.children}}" wx:key="">
-      <template is="{{item.type}}<%= i + 1 %>" data="{{...item }}"></template>
-    </block>
+  <view class="{{props.className}}">
+    <template is="$$REMAX_CHILDREN<%= i %>" data="{{ children: children }}" />
   </view>
 </template>
 

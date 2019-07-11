@@ -7,9 +7,22 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "start": "tsc --declaration --watch",
     "build": "tsc --declaration"
   },
   "devDependencies": {
+    "@types/react": "^16.8.23",
+    "@types/react-reconciler": "^0.18.0",
+    "@types/scheduler": "^0.12.1",
+    "@types/weixin-app": "^2.2.27",
+    "react": "^16.8.6",
     "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "react-reconciler": "^0.20.4",
+    "scheduler": "^0.14.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
   }
 }
