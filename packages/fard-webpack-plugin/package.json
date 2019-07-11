@@ -331,5 +331,6 @@
   "bugs": {
     "url": "https://github.com/132yse/fard/issues"
   },
-  "homepage": "https://github.com/132yse/fard#readme"
+  "homepage": "https://github.com/132yse/fard#readme",
+  "gitHead": "f9ed8a82523293497c2abd6fda25c79f78e4a389"
 }

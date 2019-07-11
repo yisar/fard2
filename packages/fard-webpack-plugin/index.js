@@ -45,7 +45,7 @@ Component({
     detached() {
       const detach = (this.data.vdom.props||{}).onDetach
       detach && detach()
-    },
+    }
   },
   options: {
     addGlobalClass: true
