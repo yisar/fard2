@@ -1,3 +1,4 @@
+// @ts-ignore
 import { options, scheduleWork } from 'fre'
 
 const ARRAYTYPE = '[object Array]'
@@ -25,6 +26,7 @@ options.commitWork = fiber => {
         resolve(null)
         return
       }
+      // @ts-ignore
       context.setData(diffRes, () => {
         resolve(diffRes)
       })
@@ -33,19 +35,23 @@ options.commitWork = fiber => {
 
   console.log(vdom);
   if (!oldVdom) {
+    // @ts-ignore
     context.setData({
       vdom
     })
   } else {
     update().then(diff => {
+      // @ts-ignore
       context.setData(diff)
     })
   }
   if (bridgeType === 'template') {
     for (let k in handlerMap) {
+      // @ts-ignore
       context[k] = handlerMap[k]
     }
   }
+  // @ts-ignore
   oldVdom = vdom
 }
 
@@ -55,6 +61,7 @@ function render (vdom, options) {
       vdom: {}
     },
     onLoad () {
+      // @ts-ignore
       context = this
       scheduleWork({
         tag: 2,
@@ -64,6 +71,7 @@ function render (vdom, options) {
       })
     }
   }
+  // @ts-ignore
   Page({ ...options, ...hostCofig })
 }
 
@@ -169,14 +177,18 @@ function h (type, props) {
   let children = []
   let length = arguments.length
 
+  // @ts-ignore
   while (length-- > 2) rest.push(arguments[length])
   while (rest.length) {
     let vnode = rest.pop()
+    // @ts-ignore
     if (vnode && vnode.pop) {
+      // @ts-ignore
       for (length = vnode.length; length--;) rest.push(vnode[length])
     } else if (typeof vnode === 'function') {
       children = vnode
     } else {
+      // @ts-ignore
       children.push(vnode)
     }
   }
@@ -203,6 +215,7 @@ const unstable_setBridgreType = (newBridgeType) => {
   bridgeType = newBridgeType
 };
 
+// @ts-ignore
 const api = wx || my || tt || swan
 
 export { h, render, api, context, unstable_setBridgreType }

@@ -2,13 +2,14 @@
   "name": "fard",
   "version": "0.1.0",
   "description": "Fard",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/132yse/fard",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "tsc --declaration"
+  },
   "devDependencies": {
-    "rollup": "^1.16.2",
-    "rollup-plugin-cleanup": "^3.1.1",
-    "rollup-plugin-license": "^0.9.0"
+    "typescript": "^3.5.3"
   }
 }
