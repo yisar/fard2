@@ -10,6 +10,9 @@ function Counter () {
       <button class='btn' onClick={() => setCount(count + 1)}>
         +
       </button>
+      <button class='btn' onClick={() => setCount(count - 1)}>
+        -
+      </button>
     </view>
   )
 }
