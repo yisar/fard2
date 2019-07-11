@@ -87,7 +87,7 @@ Component({
   <view class="{{vdom.props.class||vdom.props.className}}" bindtap="{{vdom.props.onclick||''}}">
     {{vdom.props.nodeValue}}
     <block wx:for="{{vdom.props.children}}" wx:key=''>
-      <fard vdom="{{item}}" wx:if="{{item.type === 'view'}}" />
+      <fard vdom="{{item}}"/>
     </block>
   </view>
 </block>
